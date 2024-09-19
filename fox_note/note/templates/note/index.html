@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="{% static "note/css/index.css" %}">
+
+
+
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  
+  
+  
+</head>
+<body>
+    <!-- for the title -->
+    <header>
+      <h1>FOXNOTE</h1>
+    </header>
+
+
+    <!-- for the navbar -->
+    <nav> 
+
+      <div class="navbar-left-section">
+        <button class="select-button" onclick="showSelectionOptions()">Select</button>
+        <button class="delete-selection" onclick="deleteSelect()">delete</button>
+        <button class="select-all-selection" onclick="selectAll()">select all</button>
+        <button class="cancel-selection" onclick="cancelSelection()">cancel</button>
+      </div>
+
+
+      <div class="navbar-right-section">
+        <button class="search-button">Search</button>
+
+        <a class="my-notes" href="{% url 'note_account' request.user.username %}">My notes</a>
+  
+  
+        <a class="my-tags" href="">My tags</a>
+  
+  
+        <button class="my-profile" onclick="toggleDropdown()">
+          Profile
+        </button>
+  
+      </div>
+
+      <div id="dropdown-menu" class="dropdown-content">
+        <a href="{% url 'profile-management' request.user.username %}" style="border-radius: 15px 15px 0 0;">profile management <img src="{% static 'note/image/profile.png' %}" alt="profile"></a>
+        <a href="{% url 'account_logout' %}" style="border-radius: 0 0 15px 15px;">Logout <img src="{% static 'note/image/logout.png' %}" alt="logout"></a>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+  <div class="forms">
+    <div class="add-note">
+      <form id="add-note-form" action="" method="post" onsubmit="return createNote(event)">
+        {% csrf_token %}
+        {{ note_form.as_p }}
+        <input type="hidden" name="note_content" id="note-content"> <!-- Hidden input to store Quill content -->
+        <div id="form-note"></div>
+        <button type="submit">Add Note</button>
+      </form>  
+    </div>
+    
+    <div class="add-tag">
+      <form id="add-tag-form" action="" method="post" onsubmit="return createTag(event)">
+        {% csrf_token %}
+        {{tag_formset.as_p}}
+        <button type="submit">Add tag</button>
+      </form>
+    </div>
+    
+  </div>
+
+
+
+  <br><br><br><br>
+
+  <form id="search-form" onsubmit="searchResult(event)">
+    <label for="search-mode">Choose search mode:</label>
+    <select id="search-mode" onchange="toggleSearchFields()">
+      <option value="title">Search by Title</option>
+      <option value="tag">Search by Tag</option>
+      <option value="advanced">Advanced Search</option>
+    </select>
+  
+    <div id="title-search" style="display:none;">
+      <label for="title-input">Title:</label>
+      <input type="text" id="title-input" name="title" placeholder="search the title">
+      <span id="title-error" class="error-message"></span>
+    </div>
+  
+    <div id="tag-search" style="display:none;">
+      <label for="tag-input">Tag:</label>
+      <input type="text" id="tag-input" name="tag" placeholder="search the tag">
+      <span id="tag-error" class="error-message"></span>
+    </div>
+  
+    <div id="advanced-search" style="display:none;">
+      <label for="advanced-title-input">Title:</label>
+      <input type="text" id="advanced-title-input" name="advanced_title" placeholder="search the title">
+      <span id="advanced-title-error" class="error-message"></span>
+      
+      <label for="advanced-tag-input">Tag:</label>
+      <input type="text" id="advanced-tag-input" name="advanced_tag" placeholder="search the tag">
+      <span id="advanced-tag-error" class="error-message"></span>
+    </div>
+  
+    <button type="submit">Search</button>
+  </form>
+
+
+  <br><br><br><br>
+
+  <button>select</button>
+  <button onclick="deleteSelect()">delete</button>
+  <button onclick="selectAll()">select all</button>
+  <button onclick="cancelSelection()">cancel</button>
+
+  <div id="notes"></div>
+
+  <br><br><br><br>
+  <button id="show-more" data-offset="3" onclick="showMore()">load more</button>
+  
+
+
+
+    
+  
+
+
+  <script>
+    const getProfileNotesUrl = "{% url 'get-profile-notes' %}";
+  </script>
+  
+
+  <script src='{% static "note/javascript/quill-note.js" %}'></script>
+
+  <script src="{% static 'note/javascript/index.js' %}"></script>
+
+  <script src="{% static 'note/javascript/index-2.js' %}"></script>
+</body>
+</html>

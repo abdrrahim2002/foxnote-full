@@ -1,0 +1,90 @@
+
+{% load static %}
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+
+<link rel="stylesheet" href="{% static "/account/css/email_confirm.css" %}">
+
+
+<!-- header -->
+<header>
+	<h1>FOXNOTE</h1>
+</header>
+
+
+
+<!-- message box -->
+
+<div class="popup-message-container">
+	<div id="popup-message1" class="popup-message">
+		<span class="message">message 1</span>
+		<button onclick="closePopup('popup-message1')">&times;</button>
+	</div>
+	<br><br>
+	<div id="popup-message" class="popup-message">
+		<span class="message">message 2</span>
+		<button onclick="closePopup('popup-message')">&times;</button>
+	</div>
+
+	<div id="popup-message" class="popup-message">
+		<span class="message">message 3</span>
+		<button onclick="closePopup('popup-message')">&times;</button>
+	</div>
+
+	{% if messages %}
+			
+		{% for message in messages %}
+
+			<div id="popup-{{ forloop.counter }}" class="popup-message">
+				<span class="message">{{ message }}</span>
+				<button onclick="closePopup('popup-{{ forloop.counter }}')">&times;</button>
+			</div>
+
+		{% endfor %}
+		
+	{% endif %}
+
+
+</div>
+
+
+<!-- success message -->
+<div class="success-message-container">
+	<div class="success-message">
+        {% block content %}
+            {% element h1 %}
+                {% trans "Confirm Email Address" %}
+            {% endelement %}
+            {% if confirmation %}
+                {% user_display confirmation.email_address.user as user_display %}
+                {% if can_confirm %}
+                    {% element p %}
+                        {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
+                    {% endelement %}
+                    {% url 'account_confirm_email' confirmation.key as action_url %}
+                    {% element form method="post" action=action_url %}
+                        {% slot actions %}
+                            {% csrf_token %}
+                            {{ redirect_field }}
+                            {% element button type="submit" %}
+                                {% trans 'Confirm' %}
+                            {% endelement %}
+                        {% endslot %}
+                    {% endelement %}
+                {% else %}
+                    {% element p %}
+                        {% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}
+                    {% endelement %}
+                {% endif %}
+            {% else %}
+                {% url 'account_email' as email_url %}
+                {% element p %}
+                    {% blocktrans %}This email confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new email confirmation request.</a>{% endblocktrans %}
+                {% endelement %}
+            {% endif %}
+        {% endblock content %}
+    </div>
+</div>
+
+<script src="{% static "account/js/remove-popup-message.js" %}"></script>

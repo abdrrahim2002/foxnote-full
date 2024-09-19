@@ -1,0 +1,78 @@
+
+{% load i18n %}
+{% load allauth %}
+{% load static %}
+
+<!-- the style -->
+<link rel="stylesheet" href="{% static "/account/css/verification_sent.css" %}">
+
+<!-- the background -->
+<div class="reveal-background"></div>
+
+<!-- the header -->
+<header>
+	<h1>FOXNOTE</h1>
+</header>
+
+
+
+<!-- the messages popup -->
+<div class="popup-message-container">
+	<div id="popup-message1" class="popup-message">
+		<span class="message">message 1</span>
+		<button onclick="closePopup('popup-message1')">&times;</button>
+	</div>
+	<br><br>
+	<div id="popup-message" class="popup-message">
+		<span class="message">message 2</span>
+		<button onclick="closePopup('popup-message')">&times;</button>
+	</div>
+
+	<div id="popup-message" class="popup-message">
+		<span class="message">message 3</span>
+		<button onclick="closePopup('popup-message')">&times;</button>
+	</div>
+
+	{% if messages %}
+			
+		{% for message in messages %}
+
+			<div id="popup-{{ forloop.counter }}" class="popup-message">
+				<span class="message">{{ message }}</span>
+				<button onclick="closePopup('popup-{{ forloop.counter }}')">&times;</button>
+			</div>
+
+		{% endfor %}
+		
+	{% endif %}
+
+
+</div>
+
+
+
+<!-- the success message -->
+<div class="success-message-container">
+	<div class="success-message">
+		{% block content %}
+			{% element h2 %}
+				{% trans "Verify Your Email Address" %}
+			{% endelement %}
+			
+				{% element p %}
+						{% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
+				{% endelement %}
+			
+		{% endblock content %}
+	</div>
+</div>
+
+
+
+
+
+
+
+  
+<!-- todo the animation of removing popup message -->
+<script src="{% static "account/js/remove-popup-message.js" %}"></script>

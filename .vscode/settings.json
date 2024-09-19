@@ -1,0 +1,64 @@
+{
+  "material-icon-theme.folders.theme": "specific",
+  "workbench.colorTheme": "Dracula Theme Soft",
+
+
+  "workbench.colorCustomizations": {
+    // Editor colors (as before)
+
+    //"scrollbarSlider.background": "#9327ff45",
+    //"scrollbarSlider.hoverBackground": "#9327ff57",
+    
+    // Activity bar
+    "editor.background": "#121212",
+    "activityBar.background": "#000000",
+    "activityBar.foreground": "#e385ff",
+    "sideBarSectionHeader.background": "#222222",
+    
+    
+
+    // Side bar
+    "sideBar.background": "#070707",
+    "sideBar.foreground": "#ededed",
+    
+
+
+    //status bar
+    "statusBar.background": "#31002b",
+    "statusBar.foreground": "#dddddd",
+
+
+    //tabs
+    //"tab.inactiveBackground": "#2a0025",
+    "tab.activeBackground": "#6b005d99",
+    "tab.inactiveForeground": "#CCCCCC",
+    "tab.activeForeground": "#ffffff",
+    "tab.border": "#4a4a4a",
+    "toolbar.hoverBackground": "#ff000089",
+    //"tab.activeBorder": "#dddddd",
+
+    //terminal
+     "terminal.background": "#000000",
+     "panel.background": "#00000000",
+
+
+    //mini map
+    "minimap.background": "#00000000",
+    "minimap.border": "#00000000",
+
+
+    //nav bar
+    "breadcrumb.background": "#000000",
+    "breadcrumb.foreground": "#ffffff",
+    "breadcrumb.focusForeground": "#e48dff",
+
+   
+    
+    
+     
+},
+"json.schemas": [
+
+
+]
+}

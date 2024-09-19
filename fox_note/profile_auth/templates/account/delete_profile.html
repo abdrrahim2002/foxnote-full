@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Delete Profile</h2>
+  <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
+
+  <form method="post">
+      {% csrf_token %}
+      <button type="submit">Yes, delete my profile</button>
+      <a href="{% url 'note_account' request.user.username %}">Cancel</a> <!-- Adjust this URL to your profile page -->
+  </form>
+</body>
+</html>
