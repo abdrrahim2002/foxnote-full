@@ -8,14 +8,25 @@
   <title>Document</title>
   
   <link rel="stylesheet" href="{% static "note/css/index.css" %}">
+  <link rel="stylesheet" href="{% static "note/css/quill.css" %}">
+
 
 
 
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   
+
   
-  
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <!-- for the title -->
@@ -36,7 +47,9 @@
 
 
       <div class="navbar-right-section">
-        <button class="search-button">Search</button>
+        <button class="search-button" onclick="startSearch()">Search</button>
+
+        <button class="create-note">Create note</button>
 
         <a class="my-notes" href="{% url 'note_account' request.user.username %}">My notes</a>
   
@@ -55,6 +68,7 @@
         <a href="{% url 'account_logout' %}" style="border-radius: 0 0 15px 15px;">Logout <img src="{% static 'note/image/logout.png' %}" alt="logout"></a>
       </div>
     </nav>
+
 
 
 
@@ -87,38 +101,53 @@
 
   <br><br><br><br>
 
-  <form id="search-form" onsubmit="searchResult(event)">
-    <label for="search-mode">Choose search mode:</label>
+  <form id="search-form" class="search-form" onsubmit="searchResult(event)">
+    <span class="close-button" onclick="closeSearch()">&times;</span>
+    <label class="search-form-label" for="search-mode">Choose search mode:</label>
     <select id="search-mode" onchange="toggleSearchFields()">
-      <option value="title">Search by Title</option>
-      <option value="tag">Search by Tag</option>
-      <option value="advanced">Advanced Search</option>
+      <option class="option" value="title">Search by Title</option>
+      <option class="option" value="tag">Search by Tag</option>
+      <option class="option" value="advanced">Advanced Search</option>
     </select>
   
     <div id="title-search" style="display:none;">
       <label for="title-input">Title:</label>
-      <input type="text" id="title-input" name="title" placeholder="search the title">
+      <input type="text" id="title-input" name="title" placeholder="search for a title">
       <span id="title-error" class="error-message"></span>
     </div>
   
     <div id="tag-search" style="display:none;">
-      <label for="tag-input">Tag:</label>
+      <label for="tag-input" class="tag-label">Tag:</label>
       <input type="text" id="tag-input" name="tag" placeholder="search the tag">
       <span id="tag-error" class="error-message"></span>
     </div>
   
     <div id="advanced-search" style="display:none;">
-      <label for="advanced-title-input">Title:</label>
-      <input type="text" id="advanced-title-input" name="advanced_title" placeholder="search the title">
-      <span id="advanced-title-error" class="error-message"></span>
-      
-      <label for="advanced-tag-input">Tag:</label>
-      <input type="text" id="advanced-tag-input" name="advanced_tag" placeholder="search the tag">
-      <span id="advanced-tag-error" class="error-message"></span>
+      <div class="title">
+        <label for="advanced-title-input">Title:</label>
+        <input type="text" id="advanced-title-input" name="advanced_title" placeholder="search the title">
+        <span id="advanced-title-error" class="error-message"></span>
+      </div>
+
+      <div class="tag">
+        <label for="advanced-tag-input" class="tag-label">Tag:</label>
+        <input type="text" id="advanced-tag-input" name="advanced_tag" placeholder="search the tag">
+        <span id="advanced-tag-error" class="error-message"></span>
+      </div>
     </div>
   
-    <button type="submit">Search</button>
+    <button type="submit" class="pushable">
+      <span class="shadow"></span>
+      <span class="edge"></span>
+      <span class="front"> 
+          Search 
+      <img class="search-icon" src="{% static 'note/image/search.png' %}" alt="search icon">
+
+      </span>
+  </button>
   </form>
+
+  <div class="form-overlay" onclick="closeSearch()"></div>
 
 
   <br><br><br><br>

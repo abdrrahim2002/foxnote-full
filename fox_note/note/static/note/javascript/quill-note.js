@@ -1,12 +1,23 @@
+
+
+
+
 //custom the quill toolbar element
 let customToolbar = [
   //text style
   ['bold', 'italic', 'underline', 'strike'],
 
+  //header
+  [{ 'header': [1, 2, 3, 4, 5, false] }],
+
 
   // custom text size
   [{ 'size': ['small', false, 'large', 'huge'] }],
 
+/* 
+  //custom fonts
+  [{ 'font': ['roboto', 'Playpen Sans'] }],
+ */
 
   //bullet points style ....
   [{list:'ordered'}, {list:'bullet'}],
@@ -15,7 +26,7 @@ let customToolbar = [
   [{indent:'+1'}, {indent:'-1'}],
 
   //allignment
-  //[{align:['']}],
+  [{align:['', 'right',  'center']}],
 
   // text direction
   [{ 'direction': 'rtl' }],    
@@ -27,7 +38,7 @@ let customToolbar = [
   [{color:[]}, {background:[]}],
 
   //code type 
-  ['code-block'],
+  ['blockquote'],
 
   //remove any modification such as 'bold' and 'italic'...etc
   ['clean']   
@@ -46,4 +57,5 @@ const quill = new Quill('#form-note', {
     theme: 'snow',
     placeholder: 'type here...'
 });
+
 

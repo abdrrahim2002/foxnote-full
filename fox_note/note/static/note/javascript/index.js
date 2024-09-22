@@ -683,6 +683,10 @@ function cancelSelection() {
   selectAllButton.style.display = 'none';
   cancelButton.style.display = 'none';
 
+  //reavtivate the select button
+  const selectButton = document.querySelector('.select-button');
+  selectButton.disabled = false;
+
 }
 
 
@@ -852,60 +856,71 @@ function searchResult(event) {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+        if (data.notes.length > 0) {
+          const notes = document.getElementById('notes');
+
+          notes.innerHTML = '';
 
 
-        const notes = document.getElementById('notes');
+          data.notes.forEach(function (note) {
+            const noteDiv = document.createElement('div');
 
-        notes.innerHTML = '';
+            let tagsList = '';
 
+            note.note_tags.sort();
 
-        data.notes.forEach(function (note) {
-          const noteDiv = document.createElement('div');
-
-          let tagsList = '';
-
-          note.note_tags.sort();
-
-          note.note_tags.forEach(element => {
-            tagsList += `<li>${element}</li>`;
-          });
+            note.note_tags.forEach(element => {
+              tagsList += `<li>${element}</li>`;
+            });
 
 
 
-          noteDiv.id = `note-${note.note_id}`;
+            noteDiv.id = `note-${note.note_id}`;
 
-          noteDiv.innerHTML = `
-            <h2>${note.note_title}</h2>
-            <ul>${tagsList}</ul>
-            <div id='quill-div-${note.note_id}'></div>
-            <button id='edit-${note.note_id}' onclick='editButton("quill-div-${note.note_id}", "note-${note.note_id}")'>edit</button>
-            <button id='cancel-${note.note_id}' onclick='cancelButton("quill-div-${note.note_id}", "note-${note.idnote_id}")'>cancel</button>
-            <button id='update-${note.note_id}' onclick='updateNote("quill-div-${note.note_id}", "note-${note.note_id}")'>update</button>
-            <button id='delete-${note.note_id}' onclick='deleteNote("quill-div-${note.note_id}", "note-${note.note_id}")'>delete</button>
-            <input type="checkbox" value = "${note.note_id}" id="select-check-box">
-          `;
+            noteDiv.innerHTML = `
+              <h2>${note.note_title}</h2>
+              <ul>${tagsList}</ul>
+              <div id='quill-div-${note.note_id}'></div>
+              <button id='edit-${note.note_id}' onclick='editButton("quill-div-${note.note_id}", "note-${note.note_id}")'>edit</button>
+              <button id='cancel-${note.note_id}' onclick='cancelButton("quill-div-${note.note_id}", "note-${note.idnote_id}")'>cancel</button>
+              <button id='update-${note.note_id}' onclick='updateNote("quill-div-${note.note_id}", "note-${note.note_id}")'>update</button>
+              <button id='delete-${note.note_id}' onclick='deleteNote("quill-div-${note.note_id}", "note-${note.note_id}")'>delete</button>
+              <input type="checkbox" value = "${note.note_id}" id="select-check-box">
+            `;
 
-          notes.appendChild(noteDiv);
+            notes.appendChild(noteDiv);
 
-          //create the Quill
-          const quill = new Quill(`#quill-div-${note.note_id}`, {
-            modules: {
-              toolbar: customToolbar //the name of the custom toolbar setting or module
-            },
-            theme: 'snow', //the theme of the style
-            readOnly: true
-          });
+            //create the Quill
+            const quill = new Quill(`#quill-div-${note.note_id}`, {
+              modules: {
+                toolbar: customToolbar //the name of the custom toolbar setting or module
+              },
+              theme: 'snow', //the theme of the style
+              readOnly: true
+            });
 
-          //add the content of the note
-          quill.root.innerHTML = note.note_content;
+            //add the content of the note
+            quill.root.innerHTML = note.note_content;
 
-          //target the toolbar and make it hidden
-          const toolbar = quill.getModule('toolbar').container;
-          toolbar.classList.add('toolbar-hidden');
+            //target the toolbar and make it hidden
+            const toolbar = quill.getModule('toolbar').container;
+            toolbar.classList.add('toolbar-hidden');
 
-          tagsList = '';
-        })
+            tagsList = '';
+          })
 
+        }else if (data.notes.length == 0) {
+          console.log(data.notes.length);
+
+          const notes = document.getElementById('notes');
+
+          notes.innerHTML = `<h3>we can't find any notes sorry</h3>`;
+        }
+
+
+
+
+        
         //remove the show more button
         const showMoreButton = document.getElementById('show-more');
         showMoreButton.remove();
@@ -918,6 +933,9 @@ function searchResult(event) {
         cancelSearchButton.addEventListener('click', function (){cancelSearchMode()});
 
         notes.appendChild(cancelSearchButton);
+
+        //hide the search form
+        closeSearch ();
 
       })
       .catch(error => console.error('Error:', error));

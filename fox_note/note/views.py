@@ -159,7 +159,7 @@ def createNote(request):
       #set the data
       tags_list = request.POST.getlist('tag')
       new_note.profile_id = request.user.id
-      new_note.color_id = 2
+      new_note.color_id = 3
       new_note.content = request.POST.get('note_content')
 
       new_note.save()

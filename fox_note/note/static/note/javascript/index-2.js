@@ -38,13 +38,38 @@ window.onclick = function(event) {
 
 //show the buttons when click the select button
 function showSelectionOptions () {
+  const selectButton = document.getElementsByClassName('select-button')[0];
   const deleteButton = document.querySelector('.delete-selection');
   const selectAllButton = document.querySelector('.select-all-selection');
   const cancelButton = document.querySelector('.cancel-selection');
 
+  selectButton.disabled = true;
   deleteButton.style.display = 'block';
   selectAllButton.style.display = 'block';
   cancelButton.style.display = 'block';
+
 }
 
 
+
+//show the search form 
+function startSearch () {
+  //get the necessary items
+  const searchForm = document.getElementsByClassName('search-form')[0];
+  const overlay = document.getElementsByClassName('form-overlay')[0];
+
+  searchForm.classList.add('active-search');
+  overlay.classList.add('active-overlay');
+}
+
+
+
+//function for closing the form
+function closeSearch () {
+    //get the necessary items
+    const searchForm = document.getElementsByClassName('search-form')[0];
+    const overlay = document.getElementsByClassName('form-overlay')[0];
+  
+    searchForm.classList.remove('active-search');
+    overlay.classList.remove('active-overlay');
+}

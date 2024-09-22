@@ -21,6 +21,7 @@ body {
 
   margin: 0;
   padding: 0;
+  
 }
 
 
@@ -88,6 +89,10 @@ nav .select-button {
 }
 
 nav .search-button {
+  left: 9rem;
+}
+
+nav .create-note {
   left: 6rem;
 }
 
@@ -108,7 +113,7 @@ nav .cancel-selection {
 
 
 
-nav .select-button, nav .search-button, nav .delete-selection, nav .select-all-selection, nav .cancel-selection {
+nav .select-button, nav .search-button, nav .create-note, nav .delete-selection, nav .select-all-selection, nav .cancel-selection {
   position: relative;
   padding: 12px 18px;
   transition: all 0.2s ease;
@@ -125,7 +130,7 @@ nav .select-button, nav .search-button, nav .delete-selection, nav .select-all-s
   font-weight: bold;
 }
 
-nav .select-button:before, nav .search-button:before, nav .delete-selection:before, nav .select-all-selection:before, nav .cancel-selection:before {
+nav .select-button:before, nav .search-button:before, nav .create-note:before, nav .delete-selection:before, nav .select-all-selection:before, nav .cancel-selection:before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -142,7 +147,7 @@ nav .select-button:before, nav .search-button:before, nav .delete-selection:befo
 
 
 
-nav .select-button:hover:before, nav .search-button:hover:before, nav .delete-selection:hover:before, nav .select-all-selection:hover:before, nav .cancel-selection:hover:before {
+nav .select-button:hover:before, nav .search-button:hover:before, nav .create-note:hover:before, nav .delete-selection:hover:before, nav .select-all-selection:hover:before, nav .cancel-selection:hover:before {
   width: 100%;
   height: 100%;
   background: #f29c1f;
@@ -151,7 +156,7 @@ nav .select-button:hover:before, nav .search-button:hover:before, nav .delete-se
   z-index: -1;
 }
 
-nav .select-button:active, nav .search-button:active, nav .delete-selection:active, nav .select-all-selection:active, nav .cancel-selection:active {
+nav .select-button:active, nav .search-button:active, nav .create-note:active, nav .delete-selection:active, nav .select-all-selection:active, nav .cancel-selection:active {
   transform: scale(0.95);
 }
 
@@ -321,10 +326,258 @@ nav .select-button:active, nav .search-button:active, nav .delete-selection:acti
   display: flex;
   flex-direction: row;
   margin: 100px;
+
 }
 
 #id_tag option:checked {
   background-color: #3399ff; /* or your preferred color */
   color: white;
 }
+
+
+
+/* for forms background */
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3 ease;
+  z-index: 199;
+}
+
+
+
+
+/* for the search form */
+.search-form {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  background-color: white;
+  padding: 30px;
+  padding-top: 15px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0px 0 5px 1px #0000001f inset;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3 ease;
+  z-index: 200;
+
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+}
+
+
+.active-search {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  visibility: visible;
+}
+
+
+
+/* content inside the search form */
+.close-button {
+  cursor: pointer;
+  align-self: flex-end;
+  padding: 0px 10px;
+  border-radius: 8px;
+  border: solid 2px;
+  background-color: hsl(16, 100%, 66%);
+  font-size: 1.5rem;
+}
+
+.close-button:hover {
+  background-color: rgb(255, 93, 34);
+}
+
+.search-form-label {
+  font-size: 1.3rem;
+}
+
+#search-mode {
+  background-color: white;
+  border: solid 2px;
+  cursor: pointer;
+  margin: 14px 0px;
+  padding: 5px;
+  border-radius: 8px;
+  width: fit-content;
+  font-size: 1rem
+}
+
+#search-mode .option {
+  cursor: pointer;
+}
+
+
+
+#title-search, #tag-search, #advanced-search{
+  place-self: center;
+}
+
+#advanced-search {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-label {
+  padding-right: 8px;
+}
+
+/* for the input of title */
+#title-input, #tag-input, #advanced-title-input, #advanced-tag-input {
+  border: solid 2px black;
+  border-radius: 12px;
+  padding: 5px 15px;
+  margin: 15px 0;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: 1rem;
+}
+
+#title-input:focus, #tag-input:focus, #advanced-title-input:focus, #advanced-tag-input:focus{
+  outline: none;
+}
+
+
+.error-message {
+  margin-bottom: 15px;
+  color: red;
+}
+
+
+
+
+
+.active-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+
+/* for the search button */
+
+.pushable {
+  width: fit-content;
+  align-self: center;
+  position: relative;
+  background: transparent;
+  padding: 0px;
+  border: none;
+  cursor: pointer;
+  outline-offset: 4px;
+  outline-color: deeppink;
+  transition: filter 250ms;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #f29c1f;
+  border-radius: 8px;
+  filter: blur(2px);
+  will-change: transform;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+  background: linear-gradient(
+    to right,
+    #f29c1f 0%,
+    #f29c1f 8%,
+    #f29c1f 92%,
+    #f29c1f 100%
+  );
+}
+
+.front {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  background: #f29c1f;
+  padding: 16px 32px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 1rem;
+  transform: translateY(-4px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.pushable:hover {
+  filter: brightness(110%);
+}
+
+.pushable:hover .front {
+  transform: translateY(-6px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.front .search-icon{
+  width: 1rem;
+  filter: invert(100%);
+  vertical-align: sub;
+}
+
+.pushable:hover .search-icon {
+  color: white;
+}
+
+.pushable:hover .shadow {
+  transform: translateY(4px);
+  transition: transform 250ms cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.pushable:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+
+
+
+
+
+/* the create new note form */
 
