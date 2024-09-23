@@ -35,7 +35,7 @@
 
 
 .ql-editor {
-  white-space: nowrap !important;  
+  white-space: pre !important;  
   word-wrap: normal !important;
 }
 

@@ -29,6 +29,14 @@ function loadNotes() {
 
       notes.innerHTML = '';
 
+      //all custum background color for the list elements
+      const colorClasses = ['red-background', 'blue-background', 'brown-background', 'gray-background', 'orange-background'];
+      // Function to get a random class from the list
+      function getRandomClass() {
+        const randomIndex = Math.floor(Math.random() * colorClasses.length);
+        return colorClasses[randomIndex];
+      }
+
 
       data.notes.forEach(function (note) {
         const noteDiv = document.createElement('div');
@@ -38,12 +46,13 @@ function loadNotes() {
         note.tag.sort();
 
         note.tag.forEach(element => {
-          tagsList += `<li>${element}</li>`;
+          tagsList += `<li class='${getRandomClass()}'>${element}</li>`;
         });
 
 
 
         noteDiv.id = `note-${note.id}`;
+        noteDiv.className = 'note-container';
 
         noteDiv.innerHTML = `
           <h2>${note.title}</h2>
@@ -54,6 +63,7 @@ function loadNotes() {
           <button id='update-${note.id}' onclick='updateNote("quill-div-${note.id}", "note-${note.id}")'>update</button>
           <button id='delete-${note.id}' onclick='deleteNote("quill-div-${note.id}", "note-${note.id}")'>delete</button>
           <input type="checkbox" value = "${note.id}" id="select-check-box">
+          <span>${note.creation_date.split('T')[0]}</span>
         `;
 
         notes.appendChild(noteDiv);
@@ -84,7 +94,7 @@ function loadNotes() {
       }
 
     } else {
-      alert('Error: could not lad the notes')
+      alert('Error: could not load the notes')
     }
   };
 
@@ -119,11 +129,20 @@ function showMore() {
         //target the main div of note 
         const noteContiner = document.getElementById('notes');
 
+        //all custum background color for the list elements
+        const colorClasses = ['red-background', 'blue-background', 'brown-background', 'gray-background', 'orange-background'];
+        // Function to get a random class from the list
+        function getRandomClass() {
+          const randomIndex = Math.floor(Math.random() * colorClasses.length);
+          return colorClasses[randomIndex];
+        }
+
         response.notes.forEach(note => {
             
           //create new div inside the main div note
           const noteDiv = document.createElement('div');
           noteDiv.id = `note-${note.note_id}`;
+          noteDiv.className = 'note-container'
 
 
           // Loop through the note_tags object
@@ -137,7 +156,7 @@ function showMore() {
             console.log(`Tag ID: ${tagId}, Tag Name: ${tagName}`);
 
             //create new element list
-            tagsListHtml += `<li value="${tagId}">${tagName}</li>`;
+            tagsListHtml += `<li class='${getRandomClass()}' value="${tagId}">${tagName}</li>`;
 
           });
 
@@ -349,6 +368,7 @@ function createNote(event) {
         //create new div inside the main div note
         const noteDiv = document.createElement('div');
         noteDiv.id = `note-${response.note_id}`;
+        noteDiv.className = 'note-container';
 
 
         // Loop through the note_tags object
@@ -357,12 +377,20 @@ function createNote(event) {
         //create empty string to fill inside it the <li> of the tags
         let tagsListHtml = ``;
 
+        //all custum background color for the list elements
+        const colorClasses = ['red-background', 'blue-background', 'brown-background', 'gray-background', 'orange-background'];
+        // Function to get a random class from the list
+        function getRandomClass() {
+          const randomIndex = Math.floor(Math.random() * colorClasses.length);
+          return colorClasses[randomIndex];
+        }
+
         //using Object.entries() to loop through the note tags 
         Object.entries(noteTags).forEach(([tagId, tagName]) => {
           console.log(`Tag ID: ${tagId}, Tag Name: ${tagName}`);
 
           //create new element list
-          tagsListHtml += `<li value="${tagId}">${tagName}</li>`;
+          tagsListHtml += `<li class='${getRandomClass()}' value="${tagId}">${tagName}</li>`;
 
         });
 
@@ -406,6 +434,9 @@ function createNote(event) {
       //empty the note form
       emptyNoteForm()
 
+      //close the form
+      closeSearch ()
+
       }
 
 
@@ -432,6 +463,16 @@ function emptyNoteForm() {
   const quillForm = document.getElementById('form-note');
   const hiddenInput = document.getElementById('note-content');
 
+  const addTagButton = document.querySelector('.add-tag-button');
+  const tagForm = document.querySelector('.add-tag');
+  const tagFormInput = tagForm.querySelector('input');
+
+  //hide the tag add form and show the add button
+  tagForm.style.display = 'none';
+  addTagButton.style.display = 'block';
+
+
+
   //start empty each one
   //empty the title
   titleInput.value = '';
@@ -451,6 +492,9 @@ function emptyNoteForm() {
 
   //empty the hiddin input
   hiddenInput.innerHTML = '';
+
+  //empty the add tag form input
+  tagFormInput.value='';
 
 }
 

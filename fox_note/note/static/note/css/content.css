@@ -1,0 +1,127 @@
+#notes {
+  justify-self: center;
+  width: 70%;
+  background: lightpink;
+  margin-bottom: 60px;
+}
+
+#notes .note-container {
+  padding: 30px;
+  background-color: lightgrey;
+  border: solid black 2px;
+  margin-bottom: 30px;
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
+#notes .note-container h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+
+
+#notes .note-container ul {
+  display: flex;
+  gap: 30px;
+}
+
+#notes .note-container ul li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+
+
+
+/* animated the list element */
+#notes .note-container ul li{
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffff;
+  gap: 10px;
+  font-weight: bold;
+  border: 3px solid #ffffff4d;
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+
+
+#notes .note-container ul li:hover {
+  transform: scale(1.05);
+}
+
+#notes .note-container ul li:hover .icon {
+  transform: translate(4px);
+}
+
+#notes .note-container ul li:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+#notes .note-container ul li::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
+    left: -100px;
+  }
+
+  60% {
+    left: 100%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
+
+
+
+
+
+/* for randomize the background color of the list element */
+.red-background {
+  background: red;
+}
+
+.blue-background {
+  background-color: blue;
+}
+
+.orange-background {
+  background-color: orange;
+}
+
+.gray-background {
+  background: gray;
+}
+
+.brown-background {
+  background: brown;
+}
