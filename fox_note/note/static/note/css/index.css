@@ -89,25 +89,25 @@ nav .select-button {
 }
 
 nav .search-button {
-  left: 9rem;
+  left: -4rem;
 }
 
 nav .create-note {
-  left: 6rem;
+  left: -4rem;
 }
 
 nav .delete-selection {
-  right: 2rem;
+  right: -2rem;
   display: none;
 }
 
 nav .select-all-selection {
-  right: 6rem;
+  right: -2rem;
   display: none;
 }
 
 nav .cancel-selection {
-  right: 10rem;
+  right: -2rem;
   display: none;
 }
 
@@ -120,8 +120,6 @@ nav .select-button, nav .search-button, nav .create-note, nav .delete-selection,
   border: none;
   background: none;
   cursor: pointer;
-
-  margin-right: 100px;
   color: black;
 
   font-family: "Playpen Sans", cursive;
@@ -171,11 +169,11 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
 /* buttons of links */
 
 .my-notes {
-  left: 3rem;
+  left: -4rem;
 }
 
 .my-tags {
-  left: 0rem;
+  left: -4rem;
 }
 
 .my-notes, .my-tags {
@@ -186,7 +184,6 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
   background: none;
   cursor: pointer;
 
-  margin-right: 100px;
   color: black;
 
   font-family: "Playpen Sans", cursive;
@@ -347,7 +344,7 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
   backdrop-filter: blur(5px);
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3 ease;
+  transition: all 0.3s ease;
   z-index: 199;
 }
 
@@ -356,7 +353,7 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
 
 /* for the search form */
 .search-form {
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   top: 50%;
@@ -371,7 +368,7 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
   box-shadow: 0px 0 5px 1px #0000001f inset;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3 ease;
+  transition: all 0.3s ease;
   z-index: 200;
 
 

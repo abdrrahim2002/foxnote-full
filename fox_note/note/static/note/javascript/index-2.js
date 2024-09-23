@@ -69,7 +69,39 @@ function closeSearch () {
     //get the necessary items
     const searchForm = document.getElementsByClassName('search-form')[0];
     const overlay = document.getElementsByClassName('form-overlay')[0];
+    const addNoteForm = document.querySelector('.note-and-tag-form');
   
     searchForm.classList.remove('active-search');
     overlay.classList.remove('active-overlay');
+    overlay.classList.remove('active-add-note');
+    addNoteForm.classList.remove('active-add-note')
+}
+
+
+
+
+//for the add note form
+//click the add tag button to hide it and show the add tag form
+
+function showAddTagForm () {
+  //get the elements
+  const addTagButton = document.querySelector('.add-tag-button');
+  const tagFrom = document.querySelector('.add-tag');
+
+  tagFrom.style.display = 'block';
+  addTagButton.style.display = 'none';
+}
+
+
+
+
+
+//for showing the note form
+function createNoteForm () {
+  //get elements 
+  const overlay = document.querySelector('.form-overlay');
+  const noteForm = document.querySelector('.note-and-tag-form');
+
+  overlay.classList.add('active-overlay');
+  noteForm.classList.add('active-add-note');
 }

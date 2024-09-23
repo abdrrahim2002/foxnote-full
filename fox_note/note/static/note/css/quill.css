@@ -1,7 +1,48 @@
-.form-note {
-  font-size: 2rem;
+.ql-toolbar {
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+  border: solid 2px !important;
+  border-bottom: solid 0.5px !important;
+  background: white;
+  width: 750px;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
 }
 
+
+#form-note {
+  font-size: 1.3rem;
+
+  padding: 20px;
+  padding-bottom: 25px;
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  border: solid 2px !important;
+  border-top: none !important;
+  background-color: white;
+
+  width: 750px;
+  height: fit-content;
+  max-height: 550px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+
+
+.ql-editor {
+  white-space: nowrap !important;  
+  word-wrap: normal !important;
+}
+
+
+.ql-blank::before {
+  margin-left: 17px;
+}
 
 .ql-picker {
   width: 120px !important;
@@ -13,7 +54,7 @@
 
 
 .ql-selected {
-  color: orange !important;
+  color: #f29c1f !important;
 }
 
 
@@ -94,7 +135,7 @@
 
 
 .ql-icon-picker:hover {
-  background-color: orange;
+  background-color: #f29c1f;
 }
 
 
@@ -108,7 +149,7 @@
 }
 
 .ql-snow.ql-toolbar button:hover  {
-  background-color: orange;
+  background-color: #f29c1f;
   transition: all 0.3s ease;
 
 }
@@ -166,7 +207,7 @@
 }
 
 .ql-color-picker:hover {
-  background-color: orange;
+  background-color: #f29c1f;
 }
 
 

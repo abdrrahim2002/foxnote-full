@@ -9,6 +9,7 @@
   
   <link rel="stylesheet" href="{% static "note/css/index.css" %}">
   <link rel="stylesheet" href="{% static "note/css/quill.css" %}">
+  <link rel="stylesheet" href="{% static "note/css/add-note-form.css" %}">
 
 
 
@@ -16,16 +17,6 @@
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   
-
-  
-  <!-- fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -49,7 +40,7 @@
       <div class="navbar-right-section">
         <button class="search-button" onclick="startSearch()">Search</button>
 
-        <button class="create-note">Create note</button>
+        <button class="create-note" onclick="createNoteForm()">Create note</button>
 
         <a class="my-notes" href="{% url 'note_account' request.user.username %}">My notes</a>
   
@@ -76,22 +67,31 @@
 
 
 
-  <div class="forms">
+  <div class="forms note-and-tag-form">
+    <span class="close-button" onclick="closeSearch()">&times;</span>
     <div class="add-note">
       <form id="add-note-form" action="" method="post" onsubmit="return createNote(event)">
         {% csrf_token %}
-        {{ note_form.as_p }}
+        {{ note_form }}
         <input type="hidden" name="note_content" id="note-content"> <!-- Hidden input to store Quill content -->
         <div id="form-note"></div>
-        <button type="submit">Add Note</button>
+        <button type="submit" class="pushable">
+          <span class="shadow"></span>
+          <span class="edge"></span>
+          <span class="front"> 
+              Add note
+            <img class="add-icon" src="{% static 'note/image/add.png' %}" alt="search icon">
+          </span>
+        </button>
       </form>  
+      <button class="add-tag-button" onclick="showAddTagForm ()">Add tag <span>+</span></button>
     </div>
     
     <div class="add-tag">
       <form id="add-tag-form" action="" method="post" onsubmit="return createTag(event)">
         {% csrf_token %}
-        {{tag_formset.as_p}}
-        <button type="submit">Add tag</button>
+        {{tag_formset}}
+        <button type="submit">Add tag <span>+</span></button>
       </form>
     </div>
     
@@ -144,7 +144,7 @@
       <img class="search-icon" src="{% static 'note/image/search.png' %}" alt="search icon">
 
       </span>
-  </button>
+    </button>
   </form>
 
   <div class="form-overlay" onclick="closeSearch()"></div>

@@ -8,6 +8,9 @@ class tagsForm(forms.ModelForm):
   class Meta:
     model = tags
     fields = ('tag',)
+    labels = {
+      'tag': 'New tag',
+    }
 
 
 
@@ -17,6 +20,8 @@ class noteForm(forms.ModelForm):
   class Meta:
     model = note
     fields = ('title', 'tag')
+
+    
 
   def __init__(self, *args, **kwargs):
     profile = kwargs.pop('profile', None)  # Get the profile from kwargs
