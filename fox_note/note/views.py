@@ -188,7 +188,8 @@ def createNote(request):
         'note_id':new_note.id,
         'note_title':new_note.title,
         'note_tags':tag_dic,
-        'note_content':new_note.content}, status=200)
+        'note_content':new_note.content,
+        'creation_date': new_note.creation_date}, status=200)
       '''
       return JsonResponse({
         'status':'success',

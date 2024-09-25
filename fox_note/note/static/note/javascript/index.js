@@ -57,13 +57,29 @@ function loadNotes() {
         noteDiv.innerHTML = `
           <h2>${note.title}</h2>
           <ul>${tagsList}</ul>
-          <div id='quill-div-${note.id}'></div>
-          <button id='edit-${note.id}' onclick='editButton("quill-div-${note.id}", "note-${note.id}")'>edit</button>
-          <button id='cancel-${note.id}' onclick='cancelButton("quill-div-${note.id}", "note-${note.id}")'>cancel</button>
-          <button id='update-${note.id}' onclick='updateNote("quill-div-${note.id}", "note-${note.id}")'>update</button>
-          <button id='delete-${note.id}' onclick='deleteNote("quill-div-${note.id}", "note-${note.id}")'>delete</button>
-          <input type="checkbox" value = "${note.id}" id="select-check-box">
-          <span>${note.creation_date.split('T')[0]}</span>
+          <div class='quill-div'>
+            <div id='quill-div-${note.id}' class='quill-content'></div>
+          </div>
+          <div class='buttons-edit-container'>
+            <button id='edit-${note.id}' class='edit-button' onclick='editButton("quill-div-${note.id}", "note-${note.id}")'>
+              <img src="../../static/note/image/edit.png" alt="Edit">
+              <div class="tooltiptext">Edit</div>
+            </button>
+            <button id='cancel-${note.id}' class='cancel-button' onclick='cancelButton("quill-div-${note.id}", "note-${note.id}")'>cancel</button>
+            <button id='update-${note.id}' class='update-button' onclick='updateNote("quill-div-${note.id}", "note-${note.id}")'>update</button>
+            <button id='delete-${note.id}' class='delete-button' onclick='deleteNote("quill-div-${note.id}", "note-${note.id}")'>delete</button>
+          </div>
+          
+
+
+          <div class="content">
+            <label class="checkBox">
+              <input type="checkbox" value = "${note.id}" id="select-check-box" class='select-check-box'>
+              <div class="transition"></div>
+            </label>
+          </div>
+
+          <span class='date-creation'>${note.creation_date.split('T')[0]}</span>
         `;
 
         notes.appendChild(noteDiv);
@@ -92,6 +108,7 @@ function loadNotes() {
       if (!data.has_more) {
         showMoreButton.style.display = 'none';
       }
+
 
     } else {
       alert('Error: could not load the notes')
@@ -163,12 +180,26 @@ function showMore() {
           noteDiv.innerHTML = `
             <h2>${note.note_title}</h2>
             <ul id=tag-list>${tagsListHtml}</ul>
-            <div id='quill-div-${note.note_id}'></div>
-            <button id='edit-${note.note_id}' onclick='editButton("quill-div-${note.note_id}", "note-${note.note_id}")'>edit</button>
-            <button id='cancel-${note.note_id}' onclick='cancelButton("quill-div-${note.note_id}", "note-${note.note_id}")'>cancel</button>
-            <button id='update-${note.note_id}' onclick='updateNote("quill-div-${note.note_id}", "note-${note.note_id}")'>update</button>
-            <button id='delete-${note.note_id}' onclick='deleteNote("quill-div-${note.note_id}", "note-${note.note_id}")'>delete</button>
-            <input type="checkbox" value = "${note.note_id}" id="select-check-box">
+            <div class='quill-div'>
+              <div id='quill-div-${note.note_id}' class='quill-content'></div>
+            </div>
+              <div class='buttons-edit-container'>
+              <button id='edit-${note.note_id}' class='edit-button' onclick='editButton("quill-div-${note.note_id}", "note-${note.note_id}")'>
+                <img src="../../static/note/image/edit.png" alt="Edit">
+                <div class="tooltiptext">Edit</div>
+              </button>
+              <button id='cancel-${note.note_id}' class='cancel-button' onclick='cancelButton("quill-div-${note.note_id}", "note-${note.note_id}")'>cancel</button>
+              <button id='update-${note.note_id}' class='update-button' onclick='updateNote("quill-div-${note.note_id}", "note-${note.note_id}")'>update</button>
+              <button id='delete-${note.note_id}' class='delete-button' onclick='deleteNote("quill-div-${note.note_id}", "note-${note.note_id}")'>delete</button>
+            </div>
+
+            <div class="content">
+              <label class="checkBox">
+                <input type="checkbox" value = "${note.note_id}" id="select-check-box" class='select-check-box'>
+                <div class="transition"></div>
+              </label>
+            </div>
+            <span class='date-creation'>${note.creation_date.split('T')[0]}</span>
             `;
 
           //Inserts a node as the first child of an element.
@@ -203,6 +234,19 @@ function showMore() {
         
         console.log(response.has_more);
         // Hide the button if no more notes are available
+
+
+        //check if the selection buttun is working to show the checkbox
+        //reavtivate the select button
+        const selectButton = document.querySelector('.select-button');
+        if (selectButton.disabled == true) {
+          //target the select checkboxes to shows
+          const checkboxes = document.querySelectorAll('.checkBox');
+
+          checkboxes.forEach (checkbox => {
+            checkbox.style.display = 'block';
+          });
+        }
         
         if (!response.has_more) {
           button.style.display = 'none';
@@ -397,12 +441,27 @@ function createNote(event) {
         noteDiv.innerHTML = `
           <h2>${response.note_title}</h2>
           <ul id=tag-list>${tagsListHtml}</ul>
-          <div id='quill-div-${response.note_id}'></div>
-          <button id='edit-${response.note_id}' onclick='editButton("quill-div-${response.note_id}", "note-${response.note_id}")'>edit</button>
-          <button id='cancel-${response.note_id}' onclick='cancelButton("quill-div-${response.note_id}", "note-${response.note_id}")'>cancel</button>
-          <button id='update-${response.note_id}' onclick='updateNote("quill-div-${response.note_id}", "note-${response.note_id}")'>update</button>
-          <button id='delete-${response.note_id}' onclick='deleteNote("quill-div-${response.note_id}", "note-${response.note_id}")'>delete</button>
-          <input type="checkbox" value = "${response.note_id}" id="select-check-box">
+          <div class='quill-div'>
+            <div id='quill-div-${response.note_id}' class='quill-content'></div>
+          </div>
+            <div class='buttons-edit-container'>
+            <button id='edit-${response.note_id}' class='edit-button' onclick='editButton("quill-div-${response.note_id}", "note-${response.note_id}")'>
+              <img src="../../static/note/image/edit.png" alt="Edit">
+              <div class="tooltiptext">Edit</div>
+            </button>
+            <button id='cancel-${response.note_id}' class='cancel-button' onclick='cancelButton("quill-div-${response.note_id}", "note-${response.note_id}")'>cancel</button>
+            <button id='update-${response.note_id}' class='update-button' onclick='updateNote("quill-div-${response.note_id}", "note-${response.note_id}")'>update</button>
+            <button id='delete-${response.note_id}' class='delete-button' onclick='deleteNote("quill-div-${response.note_id}", "note-${response.note_id}")'>delete</button>
+          </div>
+
+          <div class="content">
+            <label class="checkBox">
+              <input type="checkbox" value = "${response.note_id}" id="select-check-box" class='select-check-box'>
+              <div class="transition"></div>
+            </label>
+          </div>
+
+          <span class='date-creation'>${response.creation_date.split('T')[0]}</span>
           `;
 
         //Inserts a node as the first child of an element.
@@ -432,10 +491,24 @@ function createNote(event) {
       showMoreButton.setAttribute('data-offset', parseInt(offset) + 1);
 
       //empty the note form
-      emptyNoteForm()
+      emptyNoteForm();
 
       //close the form
-      closeSearch ()
+      closeSearch ();
+
+      //check if the selection buttun is working to show the checkbox
+      //reavtivate the select button
+      setTimeout(() => {
+        const selectButton = document.querySelector('.select-button');
+        if (selectButton.disabled == true) {
+          //target the select checkboxes to shows
+          const checkboxes = document.querySelectorAll('.checkBox');
+  
+          checkboxes.forEach (checkbox => {
+            checkbox.style.display = 'block';
+          });
+        }
+      }, 50);
 
       }
 
@@ -465,7 +538,11 @@ function emptyNoteForm() {
 
   const addTagButton = document.querySelector('.add-tag-button');
   const tagForm = document.querySelector('.add-tag');
-  const tagFormInput = tagForm.querySelector('input');
+  const tagFormInput = tagForm.querySelector('#id_form-0-tag');
+
+
+
+  console.log(tagFormInput);
 
   //hide the tag add form and show the add button
   tagForm.style.display = 'none';
@@ -591,6 +668,9 @@ function editButton(noteID, parentNoteID) {
     const noteTarget = document.getElementById(noteID);
     const quill = Quill.find(noteTarget);
 
+    //add the clss of quill-activate-editing to adjust the form
+    noteTarget.classList.add('quill-activate-editing');
+
     //store the note content
     noteContent = quill.root.innerHTML;
 
@@ -599,6 +679,24 @@ function editButton(noteID, parentNoteID) {
 
     //select the parent div
     const parentNote = document.getElementById(parentNoteID);
+
+    //target the edites button option : update, delete, cancel
+    const updateButton = parentNote.querySelector('.update-button');
+    const deleteButton = parentNote.querySelector('.delete-button');
+    const cancelButton = parentNote.querySelector('.cancel-button');
+
+
+    //make the target buttons visible
+    updateButton.classList.add('show-edits-buttons');
+    deleteButton.classList.add('show-edits-buttons');
+    cancelButton.classList.add('show-edits-buttons');
+
+
+    //disactivate the edite button 
+    const editButton = parentNote.querySelector('.edit-button');
+    editButton.disabled = true;
+
+
 
     //select the toolbar div of the parnet
     const toolbarChild = parentNote.querySelector('.ql-toolbar');
@@ -612,8 +710,14 @@ function editButton(noteID, parentNoteID) {
     //add an input to edite the title
     console.log(`note target :${parentNote.innerHTML}`);
     const inputTitle = `
-    <p>update title</p>
-    <input type="text" name="title" maxlength="300" required="" id="id_title" value="${title.innerText}">`
+    <div class='update-title-form'>
+      <input type="text" name="title" maxlength="300" required="" id="id_title" value="${title.innerText}">
+    </div>
+
+    `
+    //hide the title
+    title.style.visibility = 'hidden';
+
 
     title.insertAdjacentHTML('afterend', inputTitle);
     return activeEdit = true;
@@ -633,11 +737,13 @@ function cancelButton(noteID, parentNoteID) {
   //select the quill div
   const quillNote = document.getElementById(noteID);
 
+  //remove the class that adjust the quill content for editing
+  quillNote.classList.remove('quill-activate-editing');
+
   //select the quill
   const quill = Quill.find(quillNote);
 
   quill.disable();
-
 
 
   //targeting the parent note div
@@ -653,13 +759,34 @@ function cancelButton(noteID, parentNoteID) {
   //restore the note content
   quill.root.innerHTML = noteContent;
 
+  
+  //re enable the edite button
+  const editButton = parentNote.querySelector('.edit-button');
+  editButton.disabled = false;
+
+  
+  //remove the class that show the edits buttons
+  //target the edites button option : update, delete, cancel
+  const updateButton = parentNote.querySelector('.update-button');
+  const deleteButton = parentNote.querySelector('.delete-button');
+  const cancelButton = parentNote.querySelector('.cancel-button');
+
+
+  //make the target buttons visible
+  updateButton.classList.remove('show-edits-buttons');
+  deleteButton.classList.remove('show-edits-buttons');
+  cancelButton.classList.remove('show-edits-buttons');
 
 
   //target the input of the title
+  const titleInputDiv = parentNote.querySelector('.update-title-form');
   const titleInput = parentNote.querySelector('input');
-  const titleInputLabel = parentNote.querySelector('p');
+  titleInputDiv.remove();
   titleInput.remove();
-  titleInputLabel.remove();
+
+  //reshow the title
+  const title = parentNote.querySelector('h2');
+  title.style.visibility = 'visible';
 
   alert('cancel edit');
   return activeEdit = false;
@@ -731,6 +858,14 @@ function cancelSelection() {
   const selectButton = document.querySelector('.select-button');
   selectButton.disabled = false;
 
+  //hide the checkboxes
+  //target the select checkboxes to shows
+  const checkboxes = document.querySelectorAll('.checkBox');
+
+  checkboxes.forEach (checkbox => {
+    checkbox.style.display = 'none';
+  });
+
 }
 
 
@@ -754,7 +889,7 @@ function deleteSelect () {
     }
   })
 
-
+  console.log(checkboxesList);
 
   const xhr = new XMLHttpRequest();
 
@@ -1016,7 +1151,5 @@ function cancelSearchMode() {
 
   //set the show more button after the noteDiv
   notesDiv.insertAdjacentElement('afterend', showMoreButton);
-
-
 
 }

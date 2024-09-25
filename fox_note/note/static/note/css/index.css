@@ -99,16 +99,19 @@ nav .create-note {
 nav .delete-selection {
   right: -2rem;
   display: none;
+  transition: all 2s ease;
 }
 
 nav .select-all-selection {
   right: -2rem;
   display: none;
+  transition: all 2s ease;
 }
 
 nav .cancel-selection {
   right: -2rem;
   display: none;
+  transition: all 2s ease;
 }
 
 
@@ -306,14 +309,19 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
 
 /* for hide and show the toolbar */
 .toolbar-hidden {
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 3s ease-out;
+  transform: translate(0%,100%);
+  transition: all 3s ease-out;
+  
 }
 
 /* Final state: toolbar is in its normal position */
 .toolbar-visible {
+  visibility: visible;
   opacity: 1;
-  transition: opacity 3s ease-out;
+  transform: translate(0%,0%);
+  transition: all 3s ease-out;
 }
 
 
@@ -353,7 +361,7 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
 
 /* for the search form */
 .search-form {
-  position: absolute;
+  position: fixed;
   display: flex;
   flex-direction: column;
   top: 50%;

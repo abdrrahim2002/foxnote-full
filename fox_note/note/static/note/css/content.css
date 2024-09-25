@@ -1,22 +1,28 @@
 #notes {
   justify-self: center;
   width: 70%;
-  background: lightpink;
-  margin-bottom: 60px;
+  background: lightblue;
+  margin-bottom: 200px;
+  margin-top: 150px;
 }
 
 #notes .note-container {
   padding: 30px;
-  background-color: lightgrey;
-  border: solid black 2px;
+  padding-bottom: 60px;
+  background-color: lightpink;
+  border: solid black 4px;
   margin-bottom: 30px;
   font-family: "Playpen Sans", cursive;
   font-optical-sizing: auto;
   font-style: normal;
+  position: relative;
+  border-radius: 38px;
 }
 
 
 #notes .note-container h2 {
+  width: 50%;
+  margin-left: 4rem;
   font-size: 2.5rem;
   font-weight: bold;
 }
@@ -26,6 +32,10 @@
 #notes .note-container ul {
   display: flex;
   gap: 30px;
+  margin-left: 4rem;
+  flex-wrap: wrap;
+  width: 70%;
+  margin-bottom: 50px;
 }
 
 #notes .note-container ul li {
@@ -54,7 +64,7 @@
   outline: none;
   overflow: hidden;
   font-size: 15px;
-  cursor: pointer;
+  cursor: default;
 }
 
 
@@ -124,4 +134,295 @@
 
 .brown-background {
   background: brown;
+}
+
+
+
+
+
+/* styling the note content */
+
+
+
+#notes .note-container .quill-content {
+  font-size: 1.3rem;
+
+  padding: 20px;
+  padding-bottom: 25px;
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  border-radius: 13px;
+  border: solid 2px;
+  background-color: white;
+
+  width: 90%;
+  height: fit-content;
+  max-height: 550px;
+  overflow-y: auto;
+  overflow-x: auto;
+
+  transition: all 3s ease;
+}
+
+
+
+.quill-activate-editing {
+  border-top: solid 0.5px !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  transition: all 3s ease;
+}
+
+
+
+
+/* edit the edit buttons */
+#notes .note-container .buttons-edit-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  top: 60px;
+  right: 50px;
+}
+
+#notes .note-container .buttons-edit-container .edit-button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background: rgb(255, 255, 255);
+  color: #f1f1f1;
+  padding: 5px 10px 5px 12px;
+  border-radius: 15px;
+  border: solid 2px black;
+}
+
+#notes .note-container .buttons-edit-container img {
+  width: 40px;
+}
+
+#notes .note-container .buttons-edit-container .edit-button .tooltiptext {
+  visibility: hidden;
+  width: 50px;
+  background: rgb(255, 255, 255);
+  box-shadow: 0px 0 5px 1px #0000001f inset; 
+  color: #282828;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+
+}
+
+#notes .note-container .buttons-edit-container .edit-button:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+
+#notes .note-container .buttons-edit-container .edit-button:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+#notes .note-container .buttons-edit-container .edit-button .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #28282817 transparent transparent transparent;
+  transform: translateX(-50%);
+}
+
+
+/* hide the cancel, update, delete buttom */
+
+#notes .note-container .buttons-edit-container .cancel-button, #notes .note-container .buttons-edit-container .update-button, #notes .note-container .buttons-edit-container .delete-button {
+  transform: translate(0%, -40%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 3s ease;
+
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 7px;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+
+  background: white;
+}
+
+
+.show-edits-buttons {
+  transform: translate(0%, 0%) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: all 3s ease;
+  cursor: pointer;
+}
+
+
+.show-edits-buttons:hover {
+  background-color: rgb(211, 211, 211) !important;
+}
+
+.show-edits-buttons:active {
+  transform: scale(0.9) !important;
+}
+
+
+
+/* styling the selection checkboxes */
+
+.clear {
+  clear: both;
+}
+
+
+.checkBox {
+  display: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0px 0px 0px 2px #fff;
+  position: absolute;
+  top: 80px;
+  left: -70px;
+}
+
+.checkBox div {
+  width: 60px;
+  height: 60px;
+  background-color: orange;
+  top: -52px;
+  left: -52px;
+  position: absolute;
+  transform: rotateZ(45deg);
+  z-index: 100;
+}
+
+.checkBox input[type=checkbox]:checked + div {
+  left: -10px;
+  top: -10px;
+}
+
+.checkBox input[type=checkbox] {
+  position: absolute;
+  left: 50px;
+  visibility: hidden;
+}
+
+.transition {
+  transition: 300ms ease;
+}
+
+
+
+
+/* styling the update title form */
+.update-title-form {
+  position: absolute;
+  top: 67px;
+  display: flex;
+  left: 98px;
+  align-items: center;
+  gap: 30px;
+
+}
+
+.update-title-form p {
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.update-title-form input {
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.5rem;
+
+  width: 50%;
+
+  border: solid 2px black;
+  border-radius: 12px;
+  padding: 5px 15px;
+}
+
+
+.update-title-form input:focus {
+  outline: none;
+}
+
+
+/* stylin the note content position */
+.quill-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+
+
+
+/* stylin the date on the bottom of the quill content */
+
+#notes .note-container .date-creation {
+  position: absolute;
+  right: 50px;
+  
+}
+
+
+/* styling the show more button */
+.pushable-show-more {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  margin-left: 60px;
+}
+
+.shadow-show-more {
+  background: green;
+}
+
+.edge-show-more {
+  background: linear-gradient( to right, green 0%, green 8%, green 92%, green 100% );
+}
+
+.front-show-more {
+  background: green;
+}
+
+
+
+
+/* styling the footer */
+
+footer {
+  margin-top: 60px;
+  height: 300px;
+  
+  background-color: lightcoral;
 }

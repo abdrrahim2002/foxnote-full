@@ -48,6 +48,14 @@ function showSelectionOptions () {
   selectAllButton.style.display = 'block';
   cancelButton.style.display = 'block';
 
+
+  //target the select checkboxes to shows
+  const checkboxes = document.querySelectorAll('.checkBox');
+
+  checkboxes.forEach (checkbox => {
+    checkbox.style.display = 'block';
+  });
+  
 }
 
 
@@ -70,11 +78,19 @@ function closeSearch () {
     const searchForm = document.getElementsByClassName('search-form')[0];
     const overlay = document.getElementsByClassName('form-overlay')[0];
     const addNoteForm = document.querySelector('.note-and-tag-form');
+    const addTagDiv = document.querySelector('.add-tag');
+    const addTagButton = document.querySelector('.add-tag-button');
   
     searchForm.classList.remove('active-search');
     overlay.classList.remove('active-overlay');
     overlay.classList.remove('active-add-note');
-    addNoteForm.classList.remove('active-add-note')
+    addNoteForm.classList.remove('active-add-note');
+
+    setTimeout(() => {
+      addTagDiv.style.display = 'none';
+      addTagButton.style.display = 'block';
+    }, 1000);
+
 }
 
 

@@ -3,7 +3,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+  <!-- force the view to be as the pc Full HD -->
+  <meta name="viewport" content="width=1080">
+
   <meta name="csrf-token" content="{{ csrf_token }}">
   <title>Document</title>
   
@@ -43,9 +47,6 @@
         <button class="create-note" onclick="createNoteForm()">Create note</button>
 
         <a class="my-notes" href="{% url 'note_account' request.user.username %}">My notes</a>
-  
-  
-        <a class="my-tags" href="">My tags</a>
   
   
         <button class="my-profile" onclick="toggleDropdown()">
@@ -146,21 +147,29 @@
       </span>
     </button>
   </form>
-
   <div class="form-overlay" onclick="closeSearch()"></div>
 
+  <!-- 
+    <br><br><br><br>
 
-  <br><br><br><br>
-
-  <button>select</button>
-  <button onclick="deleteSelect()">delete</button>
-  <button onclick="selectAll()">select all</button>
-  <button onclick="cancelSelection()">cancel</button>
-
+    <button>select</button>
+    <button onclick="deleteSelect()">delete</button>
+    <button onclick="selectAll()">select all</button>
+<button onclick="cancelSelection()">cancel</button>
+  -->
   <div id="notes"></div>
 
   <br><br><br><br>
-  <button id="show-more" data-offset="3" onclick="showMore()">load more</button>
+
+  <button id="show-more" data-offset="3" onclick="showMore()" type="submit" class="pushable pushable-show-more">
+    <span class="shadow shadow-show-more"></span>
+    <span class="edge edge-show-more"></span>
+    <span class="front front-show-more"> 
+      load more
+    </span>
+  </button>
+
+  <footer></footer>
   
 
 
