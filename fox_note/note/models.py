@@ -15,16 +15,6 @@ class tags(models.Model):
   def __str__(self):
     return self.tag
 
-class colors(models.Model):
-  profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-  color = models.CharField(max_length=7, default='white') #hex color\
-
-  class Meta:
-    unique_together = ('profile', 'color') #ensure that the profile can use the color in multiple note and it can't be created twice no dublocation in the database
-
-
-  def __str__(self):
-    return self.color
 
 class note(models.Model):
   profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -32,7 +22,6 @@ class note(models.Model):
   tag = models.ManyToManyField(tags)
   content = models.TextField()
   creation_date = models.DateTimeField(default=timezone.now)
-  color = models.ForeignKey(colors, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.title

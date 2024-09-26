@@ -421,8 +421,138 @@
 /* styling the footer */
 
 footer {
+  grid-area: footer;
   margin-top: 60px;
   height: 300px;
   
   background-color: lightcoral;
+}
+
+
+
+
+/* styling the window that show if the user try to do somthing and he is in the edit mode acitvated */
+.edit-window-popup {
+  position: fixed;
+  visibility: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background-color: white;
+  width: 60%;
+  padding: 30px 60px;
+  border: solid black 2px;
+  border-radius: 15px;
+  z-index: 200;
+  transition: all 1s ease;
+}
+
+.edit-window-popup-show {
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+
+
+.edit-window-popup .close-button {
+  position: absolute;
+  right: 30px;
+  cursor: pointer;
+}
+
+.edit-window-popup p {
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  font-size: 1rem;
+  width: 80%;
+  margin: 100px 0;
+}
+
+.edit-window-popup .cancel-edit {
+  background-color: #e73f37;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  font-size: 1rem;
+}
+
+.edit-window-popup .cancel-edit:hover {
+  background-color: hwb(3 24% 18%);
+}
+
+.edit-window-popup .cancel-edit:active {
+  transform: scale(0.9);
+}
+
+
+
+.edit-window-popup .update-edit {
+  background-color: #21bf50;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  font-size: 1rem;
+}
+
+.edit-window-popup .update-edit:hover {
+  background-color: hwb(138 13% 30%);
+}
+
+.edit-window-popup .update-edit:active {
+  transform: scale(0.9);
+}
+
+
+
+
+.edit-window-popup .continue-edit {
+  background-color: #f29c1f;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  font-size: 1rem;
+}
+
+.edit-window-popup .continue-edit:hover {
+  background-color: hwb(36 12% 10%);
+}
+
+.edit-window-popup .continue-edit:active {
+  transform: scale(0.9);
+}
+
+
+.edit-window-popup img {
+  position: absolute;
+  right: 5%;
+  top: 21%;
+  width: 16%;
 }

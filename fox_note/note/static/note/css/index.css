@@ -379,11 +379,6 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
   transition: all 0.3s ease;
   z-index: 200;
 
-
-  font-family: "Playpen Sans", cursive;
-  font-optical-sizing: auto;
-  font-style: normal;
-  font-weight: bold;
 }
 
 
@@ -412,6 +407,18 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
 
 .search-form-label {
   font-size: 1.3rem;
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.search-form label {
+  font-size: 1.3rem;
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
 }
 
 #search-mode {
@@ -422,11 +429,22 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
   padding: 5px;
   border-radius: 8px;
   width: fit-content;
-  font-size: 1rem
+  font-size: 1rem;
+
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
 }
 
 #search-mode .option {
   cursor: pointer;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
 }
 
 
@@ -442,6 +460,11 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
 
 .tag-label {
   padding-right: 8px;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
 }
 
 /* for the input of title */
@@ -465,6 +488,11 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
 .error-message {
   margin-bottom: 15px;
   color: red;
+
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
 }
 
 

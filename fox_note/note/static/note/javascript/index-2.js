@@ -38,36 +38,45 @@ window.onclick = function(event) {
 
 //show the buttons when click the select button
 function showSelectionOptions () {
-  const selectButton = document.getElementsByClassName('select-button')[0];
-  const deleteButton = document.querySelector('.delete-selection');
-  const selectAllButton = document.querySelector('.select-all-selection');
-  const cancelButton = document.querySelector('.cancel-selection');
+  //check if we are not in the edit mode
+  if (!activeEdit) {
 
-  selectButton.disabled = true;
-  deleteButton.style.display = 'block';
-  selectAllButton.style.display = 'block';
-  cancelButton.style.display = 'block';
+    const selectButton = document.getElementsByClassName('select-button')[0];
+    const deleteButton = document.querySelector('.delete-selection');
+    const selectAllButton = document.querySelector('.select-all-selection');
+    const cancelButton = document.querySelector('.cancel-selection');
+
+    selectButton.disabled = true;
+    deleteButton.style.display = 'block';
+    selectAllButton.style.display = 'block';
+    cancelButton.style.display = 'block';
 
 
-  //target the select checkboxes to shows
-  const checkboxes = document.querySelectorAll('.checkBox');
+    //target the select checkboxes to shows
+    const checkboxes = document.querySelectorAll('.checkBox');
 
-  checkboxes.forEach (checkbox => {
-    checkbox.style.display = 'block';
-  });
-  
+    checkboxes.forEach (checkbox => {
+      checkbox.style.display = 'block';
+    });
+  }else {
+  }
 }
 
 
 
 //show the search form 
 function startSearch () {
-  //get the necessary items
-  const searchForm = document.getElementsByClassName('search-form')[0];
-  const overlay = document.getElementsByClassName('form-overlay')[0];
+  //check if we are not in the edit mode
+  if (!activeEdit) {
 
-  searchForm.classList.add('active-search');
-  overlay.classList.add('active-overlay');
+    //get the necessary items
+    const searchForm = document.getElementsByClassName('search-form')[0];
+    const overlay = document.getElementsByClassName('form-overlay')[0];
+
+    searchForm.classList.add('active-search');
+    overlay.classList.add('active-overlay');
+  } else {
+  }
 }
 
 
@@ -114,10 +123,46 @@ function showAddTagForm () {
 
 //for showing the note form
 function createNoteForm () {
-  //get elements 
-  const overlay = document.querySelector('.form-overlay');
-  const noteForm = document.querySelector('.note-and-tag-form');
+  //check if we are not in the edit mode
+  if (!activeEdit) {
+    //get elements 
+    const overlay = document.querySelector('.form-overlay');
+    const noteForm = document.querySelector('.note-and-tag-form');
 
+    overlay.classList.add('active-overlay');
+    noteForm.classList.add('active-add-note');
+  } else {
+  }
+}
+
+
+
+
+//check if when the user click in the 'my notes' button is in the edit mode or not
+
+function checkEditing(event) {
+  if(!activeEdit) {
+    //work as normal
+  }else {
+    event.preventDefault();
+    showEditPopup();
+  }
+}
+
+function showEditPopup () {
+  //select element 
+  const overlay = document.querySelector('.form-overlay');
+  const popup = document.querySelector('.edit-window-popup');
+
+  popup.classList.add('edit-window-popup-show');
   overlay.classList.add('active-overlay');
-  noteForm.classList.add('active-add-note');
+}
+
+function hideEditPopup () {
+  //select element 
+  const overlay = document.querySelector('.form-overlay');
+  const popup = document.querySelector('.edit-window-popup');
+
+  popup.classList.remove('edit-window-popup-show');
+  overlay.classList.remove('active-overlay');
 }

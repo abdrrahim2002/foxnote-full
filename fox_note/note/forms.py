@@ -12,6 +12,10 @@ class tagsForm(forms.ModelForm):
       'tag': 'New tag',
     }
 
+    widgets = {
+    'tag': forms.TextInput(attrs={'required': 'required'}),
+    }
+
 
 
 
@@ -21,6 +25,10 @@ class noteForm(forms.ModelForm):
     model = note
     fields = ('title', 'tag')
 
+    widgets = {
+    'title': forms.TextInput(attrs={'required': 'required'}),
+    }
+
     
 
   def __init__(self, *args, **kwargs):
@@ -28,6 +36,9 @@ class noteForm(forms.ModelForm):
     print(f"Profile in form: {profile}")  # Debugging line to check profile
     super().__init__(*args, **kwargs)
 
+    # Make the tag field optional (not required)
+    self.fields['tag'].required = False
+    
     # Filter tags by the user's profile
     if profile:
       self.fields['tag'].queryset = tags.objects.filter(profile=profile).order_by('tag')

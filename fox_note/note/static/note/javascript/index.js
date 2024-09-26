@@ -309,6 +309,11 @@ function updateNote(noteID, parentNoteID) {
 
 
         cancelButton(noteID, parentNoteID);
+
+        //hide the overlay if he existed
+        const overlay = document.querySelector('.form-overlay');
+        overlay.classList.remove('active-overlay');
+
       } else {
         alert('Error: Could not update the note');
       }
@@ -720,9 +725,28 @@ function editButton(noteID, parentNoteID) {
 
 
     title.insertAdjacentHTML('afterend', inputTitle);
+
+    //create the window popup so if the user try to do somthing without save the edit it will show
+    const popupWindow = `
+    <div class="edit-window-popup">
+      <span class="close-button" onclick="hideEditPopup()">&times;</span>
+      <p>you are in the edit mode you can't do this until you save the edit or cancelit or if you like continue editing</p>
+      <button class="cancel-edit" onclick='cancelButton("${noteID}", "${parentNoteID}")'>cancel edit</button>
+      <button class="update-edit" onclick='updateNote("${noteID}", "${parentNoteID}")'>update editing</button>
+      <button class="continue-edit" onclick='hideEditPopup ()'>continue editing</button>
+      <img src="../../static/note/image/holding pencil with shadow.png" alt="edit image">
+    </div>
+    `;
+
+    //target the body
+    const footer = document.querySelector('footer');
+    //put the window popup after the footer
+    footer.insertAdjacentHTML('afterend', popupWindow);
+  
+
     return activeEdit = true;
   } else {
-    alert('there is existing edit please cancel it or save it')
+    alert('there is existing edit please cancel it or save it');
   }
 }
 
@@ -789,6 +813,15 @@ function cancelButton(noteID, parentNoteID) {
   title.style.visibility = 'visible';
 
   alert('cancel edit');
+
+  //remove the windows popup 
+  const popupWindow = document.querySelector('.edit-window-popup');
+  popupWindow.remove();
+
+  //hide the overlay if he existed
+  const overlay = document.querySelector('.form-overlay');
+  overlay.classList.remove('active-overlay');
+
   return activeEdit = false;
 
 

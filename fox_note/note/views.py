@@ -63,7 +63,6 @@ def get_profile_notes(request):
       'tag':tags,
       'content':profile_note.content,
       'creation_date':profile_note.creation_date,
-      'color':str(profile_note.color),
     })
 
    
@@ -91,7 +90,6 @@ def load_more_notes (request):
         'note_tags':tags,
         'note_content':profile_note.content,
         'creation_date':profile_note.creation_date,
-        'color':str(profile_note.color),
         
       })
 
@@ -159,7 +157,6 @@ def createNote(request):
       #set the data
       tags_list = request.POST.getlist('tag')
       new_note.profile_id = request.user.id
-      new_note.color_id = 3
       new_note.content = request.POST.get('note_content')
 
       new_note.save()
@@ -179,7 +176,7 @@ def createNote(request):
         tag_name = tag_database.get(id=tag)#get the name of the tag by query the database
         tag_dic[tag]= str(tag_name)
 
-      print(tag_dic)
+      print(f'tag dic = {tag_dic}')
 
       #json respons
       return JsonResponse({
@@ -323,7 +320,6 @@ def search_notes(request):
       'note_tags':note_tags,
       'note_content':profile_note.content,
       'creation_date':profile_note.creation_date,
-      'color':str(profile_note.color),
       
     })
 

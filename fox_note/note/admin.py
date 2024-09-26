@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import tags, colors, note
+from .models import tags, note
 # Register your models here.
 
 class noteAdmin(admin.ModelAdmin):
@@ -11,6 +11,5 @@ class tagAdmin(admin.ModelAdmin):
   list_display = ('profile', 'tag',)
 
 admin.site.register(tags, tagAdmin)
-admin.site.register(colors)
 admin.site.register(note, noteAdmin)
 
