@@ -61,7 +61,7 @@ function loadNotes() {
             <div id='quill-div-${note.id}' class='quill-content'></div>
           </div>
           <div class='buttons-edit-container'>
-            <button id='edit-${note.id}' class='edit-button' onclick='editButton("quill-div-${note.id}", "note-${note.id}")'>
+            <button id='edit-${note.id}' class='edit-button' onclick='checkEditing(event), editButton("quill-div-${note.id}", "note-${note.id}") '>
               <img src="../../static/note/image/edit.png" alt="Edit">
               <div class="tooltiptext">Edit</div>
             </button>
@@ -107,6 +107,28 @@ function loadNotes() {
       const showMoreButton = document.getElementById('show-more');
       if (!data.has_more) {
         showMoreButton.style.display = 'none';
+        if (data.notes.length > 0) {
+          //message at the buttom of the note div
+          const message = `
+            <p id="end-showmore-message">✅ <span> All of your notes have been shown!</span></p>
+          `;
+          notes.insertAdjacentHTML('afterend', message); 
+        }else {
+          const message = `
+          <div class='no-note-message'>
+            <p id="end-showmore-message"><span> You don't have any notes, start make one!</span></p>
+            <img src="../../static/note/image/pencil.png" alt="start edit">
+          </div>
+            `;
+          notes.insertAdjacentHTML('afterend', message); 
+        }
+
+  
+      } else {
+        setTimeout(() => {
+          showMoreButton.style.display = 'block';
+        }, 200);
+
       }
 
 
@@ -184,7 +206,7 @@ function showMore() {
               <div id='quill-div-${note.note_id}' class='quill-content'></div>
             </div>
               <div class='buttons-edit-container'>
-              <button id='edit-${note.note_id}' class='edit-button' onclick='editButton("quill-div-${note.note_id}", "note-${note.note_id}")'>
+              <button id='edit-${note.note_id}' class='edit-button' onclick='editButton("checkEditing(event), quill-div-${note.note_id}", "note-${note.note_id}")'>
                 <img src="../../static/note/image/edit.png" alt="Edit">
                 <div class="tooltiptext">Edit</div>
               </button>
@@ -225,8 +247,6 @@ function showMore() {
         })
         
 
-
-        alert('show more notes done');
       
         // Update the offset for the next batch
         button.setAttribute('data-offset', parseInt(offset) + 3);
@@ -250,6 +270,11 @@ function showMore() {
         
         if (!response.has_more) {
           button.style.display = 'none';
+          //message at the buttom of the note div
+          const message = `
+            <p id="end-showmore-message">✅ <span> All of your notes have been shown!</span></p>
+          `;
+          noteContiner.insertAdjacentHTML('afterend', message)
         }
 
       }
@@ -297,7 +322,6 @@ function updateNote(noteID, parentNoteID) {
     if (xhr.status >= 200 && xhr.status < 400) {
       const respons = JSON.parse(xhr.responseText);
       if (respons.message) {
-        alert('note udpate successfully');
 
         //make the quill note to reade only
 
@@ -355,7 +379,6 @@ function deleteNote(noteID, parentNoteID) {
     if (xhr.status >= 200 && xhr.status < 400) {
       const respons = JSON.parse(xhr.responseText);
       if (respons.message) {
-        alert(respons.message);
 
 
         noteContent = quill.root.innerHTML;
@@ -410,7 +433,7 @@ function createNote(event) {
       const response = JSON.parse(this.responseText);
 
       if (response.status == 'success') {
-        alert(response.message);
+        
         //target the main div of note 
         const note = document.getElementById('notes');
 
@@ -450,7 +473,7 @@ function createNote(event) {
             <div id='quill-div-${response.note_id}' class='quill-content'></div>
           </div>
             <div class='buttons-edit-container'>
-            <button id='edit-${response.note_id}' class='edit-button' onclick='editButton("quill-div-${response.note_id}", "note-${response.note_id}")'>
+            <button id='edit-${response.note_id}' class='edit-button' onclick='checkEditing(event), editButton("quill-div-${response.note_id}", "note-${response.note_id}")'>
               <img src="../../static/note/image/edit.png" alt="Edit">
               <div class="tooltiptext">Edit</div>
             </button>
@@ -501,6 +524,10 @@ function createNote(event) {
       //close the form
       closeSearch ();
 
+      //remove the first message where the user don't have any note
+      const messageNoNote = document.querySelector('.no-note-message');
+      messageNoNote.remove();
+
       //check if the selection buttun is working to show the checkbox
       //reavtivate the select button
       setTimeout(() => {
@@ -526,7 +553,7 @@ function createNote(event) {
   };
 
   xhr.send(formData);
-  console.log(formData);
+  //console.log(formData);
 }
 
 
@@ -547,7 +574,7 @@ function emptyNoteForm() {
 
 
 
-  console.log(tagFormInput);
+  //console.log(tagFormInput);
 
   //hide the tag add form and show the add button
   tagForm.style.display = 'none';
@@ -610,7 +637,6 @@ function createTag(event) {
       const response = JSON.parse(this.responseText);
 
       if (response.status == 'success') {
-        alert('Tag added successfully!');
         //select the list were the tags is
         const tagList = document.getElementById('id_tag');
 
@@ -634,7 +660,7 @@ function createTag(event) {
   };
 
   xhr.send(formData);
-  console.log(formData);
+  //console.log(formData);
 }
 
 
@@ -664,7 +690,6 @@ let activeEdit = false;
 //function activate the edit button
 function editButton(noteID, parentNoteID) {
   if (!activeEdit) {
-    alert('there is no edit you will start edit')
 
     //store the note content
 
@@ -713,7 +738,7 @@ function editButton(noteID, parentNoteID) {
     const title = parentNote.querySelector('h2');
 
     //add an input to edite the title
-    console.log(`note target :${parentNote.innerHTML}`);
+    //console.log(`note target :${parentNote.innerHTML}`);
     const inputTitle = `
     <div class='update-title-form'>
       <input type="text" name="title" maxlength="300" required="" id="id_title" value="${title.innerText}">
@@ -746,7 +771,6 @@ function editButton(noteID, parentNoteID) {
 
     return activeEdit = true;
   } else {
-    alert('there is existing edit please cancel it or save it');
   }
 }
 
@@ -812,7 +836,7 @@ function cancelButton(noteID, parentNoteID) {
   const title = parentNote.querySelector('h2');
   title.style.visibility = 'visible';
 
-  alert('cancel edit');
+
 
   //remove the windows popup 
   const popupWindow = document.querySelector('.edit-window-popup');
@@ -859,7 +883,7 @@ function selectAll() {
     element.checked = true; // This checks (activates) the checkbox
   })
 
-  console.log(mainDiv.querySelectorAll('input[type="checkbox"]'));
+  //console.log(mainDiv.querySelectorAll('input[type="checkbox"]'));
 }
 
 
@@ -922,7 +946,7 @@ function deleteSelect () {
     }
   })
 
-  console.log(checkboxesList);
+  //console.log(checkboxesList);
 
   const xhr = new XMLHttpRequest();
 
@@ -937,7 +961,7 @@ function deleteSelect () {
 
   xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 400) {
-      console.log(xhr.responseText)
+      //console.log(xhr.responseText)
 
       //loop through evry element inside checkboxList
       checkboxesList.forEach(element => {
@@ -950,7 +974,7 @@ function deleteSelect () {
       //dicress the show more button when he delete multiple notes to avoude duplicate data
       const showMoreButton = document.getElementById('show-more');
       const offset = showMoreButton.getAttribute('data-offset');
-      console.log(`the list : ${checkboxesList} the length of the list ${checkboxesList.length} offset:${offset}` );
+      //console.log(`the list : ${checkboxesList} the length of the list ${checkboxesList.length} offset:${offset}` );
       showMoreButton.setAttribute('data-offset', parseInt(offset) - checkboxesList.length);
     } else {
       alert("Error: we can't delete the selected items");
@@ -1058,7 +1082,7 @@ function searchResult(event) {
 
   }
 
-  console.log('params :' + params);
+  //console.log('params :' + params);
 
   //check if the params is not empty to run the GET request
   if (isValid && [...params].length > 0) {
@@ -1067,7 +1091,7 @@ function searchResult(event) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
         if (data.notes.length > 0) {
           const notes = document.getElementById('notes');
 
@@ -1122,7 +1146,7 @@ function searchResult(event) {
           })
 
         }else if (data.notes.length == 0) {
-          console.log(data.notes.length);
+          //console.log(data.notes.length);
 
           const notes = document.getElementById('notes');
 

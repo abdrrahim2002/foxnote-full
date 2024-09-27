@@ -17,20 +17,6 @@
 <!-- message box -->
 
 <div class="popup-message-container">
-	<div id="popup-message1" class="popup-message">
-		<span class="message">message 1</span>
-		<button onclick="closePopup('popup-message1')">&times;</button>
-	</div>
-	<br><br>
-	<div id="popup-message" class="popup-message">
-		<span class="message">message 2</span>
-		<button onclick="closePopup('popup-message')">&times;</button>
-	</div>
-
-	<div id="popup-message" class="popup-message">
-		<span class="message">message 3</span>
-		<button onclick="closePopup('popup-message')">&times;</button>
-	</div>
 
 	{% if messages %}
 			
@@ -60,16 +46,20 @@
                 {% user_display confirmation.email_address.user as user_display %}
                 {% if can_confirm %}
                     {% element p %}
-                        {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
+                        {% blocktrans with confirmation.email_address.email as email %}Please confirm that <b>{{ email }}</b> is an email address for user {{ user_display }}.{% endblocktrans %}
                     {% endelement %}
                     {% url 'account_confirm_email' confirmation.key as action_url %}
                     {% element form method="post" action=action_url %}
                         {% slot actions %}
                             {% csrf_token %}
                             {{ redirect_field }}
-                            {% element button type="submit" %}
-                                {% trans 'Confirm' %}
-                            {% endelement %}
+                            <button type="submit" class="pushable">
+                                <span class="shadow"></span>
+                                <span class="edge"></span>
+                                <span class="front"> 
+                                    {% trans 'Confirm' %} 
+                                </span>
+                            </button>
                         {% endslot %}
                     {% endelement %}
                 {% else %}

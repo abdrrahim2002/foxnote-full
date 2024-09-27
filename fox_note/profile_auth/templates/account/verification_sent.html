@@ -18,21 +18,6 @@
 
 <!-- the messages popup -->
 <div class="popup-message-container">
-	<div id="popup-message1" class="popup-message">
-		<span class="message">message 1</span>
-		<button onclick="closePopup('popup-message1')">&times;</button>
-	</div>
-	<br><br>
-	<div id="popup-message" class="popup-message">
-		<span class="message">message 2</span>
-		<button onclick="closePopup('popup-message')">&times;</button>
-	</div>
-
-	<div id="popup-message" class="popup-message">
-		<span class="message">message 3</span>
-		<button onclick="closePopup('popup-message')">&times;</button>
-	</div>
-
 	{% if messages %}
 			
 		{% for message in messages %}

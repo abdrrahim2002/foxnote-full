@@ -7,7 +7,7 @@
 
 /* styling the body */
 body {
-  background: lightslategray;
+  background: rgb(255, 255, 255);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -29,12 +29,10 @@ body {
 /* styling the header */
 header {
   grid-area: header;
-  max-height: 60px;
-  min-height: 60px;
 }
 
 header h1 {
-  font-size: 48px;
+  font-size: 4rem;
   color: #f29c1f; /* Orange color for FOXNOTE */
   margin-bottom: 20px;
   font-family: "Caveat Brush", system-ui;
@@ -312,7 +310,6 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
   visibility: hidden;
   opacity: 0;
   transform: translate(0%,100%);
-  transition: all 3s ease-out;
   
 }
 
@@ -321,7 +318,7 @@ nav .select-button:active, nav .search-button:active, nav .create-note:active, n
   visibility: visible;
   opacity: 1;
   transform: translate(0%,0%);
-  transition: all 3s ease-out;
+  transition: all 0.5s ease;
 }
 
 

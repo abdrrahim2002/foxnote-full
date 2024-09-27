@@ -100,8 +100,6 @@
 
 
 
-  <br><br><br><br>
-
   <form id="search-form" class="search-form" onsubmit="searchResult(event)">
     <span class="close-button" onclick="closeSearch()">&times;</span>
     <label class="search-form-label" for="search-mode">Choose search mode:</label>
@@ -149,17 +147,11 @@
   </form>
   <div class="form-overlay" onclick="closeSearch(), hideEditPopup()"></div>
 
-  <!-- 
-    <br><br><br><br>
 
-    <button>select</button>
-    <button onclick="deleteSelect()">delete</button>
-    <button onclick="selectAll()">select all</button>
-<button onclick="cancelSelection()">cancel</button>
-  -->
+  <!-- the content of the note -->
   <div id="notes"></div>
 
-  <br><br><br><br>
+
 
   <button id="show-more" data-offset="3" onclick="showMore()" type="submit" class="pushable pushable-show-more">
     <span class="shadow shadow-show-more"></span>

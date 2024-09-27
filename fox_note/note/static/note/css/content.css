@@ -1,15 +1,15 @@
 #notes {
   justify-self: center;
   width: 70%;
-  background: lightblue;
-  margin-bottom: 200px;
+  background: rgb(255, 255, 255);
+  margin-bottom: 50px;
   margin-top: 150px;
 }
 
 #notes .note-container {
   padding: 30px;
   padding-bottom: 60px;
-  background-color: lightpink;
+  background-color: white;
   border: solid black 4px;
   margin-bottom: 30px;
   font-family: "Playpen Sans", cursive;
@@ -163,7 +163,7 @@
   overflow-y: auto;
   overflow-x: auto;
 
-  transition: all 3s ease;
+  transition: all 0.3s ease;
 }
 
 
@@ -172,7 +172,7 @@
   border-top: solid 0.5px !important;
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
-  transition: all 3s ease;
+  transition: all 0.3s ease;
 }
 
 
@@ -247,10 +247,10 @@
 /* hide the cancel, update, delete buttom */
 
 #notes .note-container .buttons-edit-container .cancel-button, #notes .note-container .buttons-edit-container .update-button, #notes .note-container .buttons-edit-container .delete-button {
-  transform: translate(0%, -40%);
+  transform: translate(0%, -10%);
   opacity: 0;
   visibility: hidden;
-  transition: all 3s ease;
+  transition: all 0.3s ease;
 
   padding: 10px;
   border: 2px solid black;
@@ -305,6 +305,7 @@
   position: absolute;
   top: 80px;
   left: -70px;
+  border: solid black;
 }
 
 .checkBox div {
@@ -401,6 +402,7 @@
   left: 50%;
   transform: translate(-50%);
   margin-left: 60px;
+  display: none;
 }
 
 .shadow-show-more {
@@ -424,7 +426,9 @@ footer {
   grid-area: footer;
   margin-top: 60px;
   height: 300px;
-  
+  width: 100%;
+  position: initial;
+  bottom: 0;
   background-color: lightcoral;
 }
 
@@ -555,4 +559,26 @@ footer {
   right: 5%;
   top: 21%;
   width: 16%;
+}
+
+
+/* custimize the end-showmore-message */
+
+#end-showmore-message {
+  text-align: center;
+  font-size: 1.5rem;
+
+}
+
+#end-showmore-message span {
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.no-note-message img {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 20%;
 }
