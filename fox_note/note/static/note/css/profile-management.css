@@ -52,7 +52,6 @@ header h1 {
 
 }
 
-
 /* nav bar */
 nav {
   position:sticky;
@@ -70,7 +69,7 @@ nav {
 
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.065) 0%, rgba(255, 255, 255, 0.088) 76%, rgba(255, 255, 255, 0.296) 100%);
   backdrop-filter: blur(5px);
- box-shadow: 0px 0 5px 1px #0000001f inset; 
+  box-shadow: 0px 0 5px 1px #0000001f inset; 
 
   width: 90%;
   border: none;
@@ -86,8 +85,17 @@ nav {
 
 
 
-/* buttons */
-.my-notes, .my-tags {
+.navbar-right-section {
+  display: flex;
+}
+/* buttons of links */
+
+.my-notes {
+  left: -4rem;
+}
+
+
+.my-notes {
   position: relative;
   padding: 12px 18px;
   transition: all 0.2s ease;
@@ -95,7 +103,6 @@ nav {
   background: none;
   cursor: pointer;
 
-  margin-right: 100px;
   color: black;
 
   font-family: "Playpen Sans", cursive;
@@ -105,11 +112,11 @@ nav {
   text-decoration: none;
 }
 
-.my-notes:active, .my-tags:active {
+.my-notes:active{
   color: black;
 }
 
-.my-notes:before, .my-tags:before {
+.my-notes:before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -126,7 +133,7 @@ nav {
 
 
 
-.my-notes:hover:before, .my-tags:hover:before {
+.my-notes:hover:before {
   width: 100%;
   height: 100%;
   background: #f29c1f;
@@ -135,7 +142,7 @@ nav {
   z-index: -1;
 }
 
-.my-notes:active, .my-tags:active {
+.my-notes:active {
   transform: scale(0.95);
 }
 
@@ -152,7 +159,7 @@ nav {
   background: none;
   cursor: pointer;
   border-radius: 50px;
-  margin-right: 70px;
+  right: 3rem;
 
   background: #f29c1f;
   backdrop-filter: blur(5px);
@@ -212,6 +219,25 @@ nav {
   margin-left: 15px;
 }
 
+
+
+
+
+/* for hide and show the toolbar */
+.toolbar-hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(0%,100%);
+  
+}
+
+/* Final state: toolbar is in its normal position */
+.toolbar-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(0%,0%);
+  transition: all 0.5s ease;
+}
 
 
 

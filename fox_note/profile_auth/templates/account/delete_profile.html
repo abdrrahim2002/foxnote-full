@@ -1,18 +1,38 @@
+{% load static %}
+{% load allauth i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'account/css/delete_profile.css' %}">
+  <!-- force the view to be as the pc Full HD -->
+  <meta name="viewport" content="width=1080">
+  <title>Foxnote</title>
 </head>
 <body>
-  <h2>Delete Profile</h2>
-  <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
 
-  <form method="post">
-      {% csrf_token %}
-      <button type="submit">Yes, delete my profile</button>
-      <a href="{% url 'note_account' request.user.username %}">Cancel</a> <!-- Adjust this URL to your profile page -->
-  </form>
+  <header>
+    <h1>FOXNOTE</h1>
+  </header>
+  <div class="main">
+    <div class="content">
+      <h2>Delete Profile</h2>
+      <p>Are you sure you want to delete your profile? This action cannot be undone.</p>
+    
+      <form method="post">
+          {% csrf_token %}
+          <button type="submit" class="pushable">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front"> 
+                {% trans 'Yes, delete my profile' %} 
+            </span>
+        </button>
+          <!-- <a href="{% url 'note_account' request.user.username %}">Cancel</a> --> <!-- Adjust this URL to your profile page -->
+      </form>
+    </div>
+    <img src="{%static 'account/images/2.2.png'%}" alt="sad">
+  </div>
+
 </body>
 </html>

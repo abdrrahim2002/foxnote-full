@@ -25,7 +25,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../images/background/wave\ type\ 7.svg'); /* Your SVG background image */
+  background-image: url('../images/background/wave type 7.svg'); /* Your SVG background image */
   background-size: cover; /* Ensure the image covers the pseudo-element */
   background-repeat: no-repeat; /* Prevent image repetition */
   background-position: center; /* Center the background image */
@@ -49,7 +49,7 @@ body::before {
 
 /* Header styling */
 header h1 {
-  font-size: 48px;
+  font-size: 4rem;
   color: #f29c1f; /* Orange color for FOXNOTE */
   margin-bottom: 20px;
   font-family: "Caveat Brush", system-ui;
@@ -146,6 +146,8 @@ header h1 {
   display: flex;
   justify-content: center;
   margin-top: 45px;
+  align-items: center;
+  height: 100vh;
 
 
 
@@ -226,6 +228,7 @@ header h1 {
   border: solid black 2px;
   outline: none;
   cursor: pointer;
+  background: whitesmoke;
 }
 
 .svg {
