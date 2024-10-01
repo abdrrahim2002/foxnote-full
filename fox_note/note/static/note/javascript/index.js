@@ -249,7 +249,7 @@ function showMore() {
 
       
         // Update the offset for the next batch
-        button.setAttribute('data-offset', parseInt(offset) + 3);
+        button.setAttribute('data-offset', parseInt(offset) + 5);
         
         
         console.log(response.has_more);

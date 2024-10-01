@@ -50,7 +50,7 @@ def get_profile_notes(request):
     return HttpResponseForbidden('Forbidden: only AJAX request are allowed')
   
   user_id = request.user.id #get the user id
-  profile_notes = note.objects.filter(profile=user_id).order_by('-creation_date')[:3] #get the related notes to the user id
+  profile_notes = note.objects.filter(profile=user_id).order_by('-creation_date')[:5] #get the related notes to the user id
   has_more = note.objects.filter(profile=request.user.id).count() > 3
   
   #create a list for the AJAX

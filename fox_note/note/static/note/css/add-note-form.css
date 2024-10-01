@@ -17,6 +17,7 @@
   padding: 60px;
   transition: all 0.3s ease;
   visibility: hidden;
+  width: 70%;
 }
 
 .active-add-note {

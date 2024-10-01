@@ -142,9 +142,8 @@ header h1 {
   display: flex;
   justify-content: center;
   margin-top: 45px;
-
-
-
+  height: 100vh;
+  position: relative;
 }
 
 .success-message {
@@ -154,7 +153,7 @@ header h1 {
   padding: 20px;
   border-radius: 20px;
   height: fit-content;
-  width: 400px;
+  width: 70%;
 
 
   font-family: "Playpen Sans", cursive;
@@ -167,6 +166,11 @@ header h1 {
   backdrop-filter: blur(5px);
 
   box-shadow: 0px 0 25px 0px #ffffff59 inset;
+
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .success-message h2 {

@@ -10,9 +10,6 @@ body {
   margin: 0;
   padding: 0;
   position: relative; /* Make sure the body is positioned to contain the pseudo-element */
-  min-height: 100vh; /* Ensure the body takes up the full height of the viewport */
-
-
 	display: grid;
   grid-template-areas: 
     'header'
@@ -24,23 +21,16 @@ body {
 	grid-template-rows: auto;
 	grid-template-columns: 1fr;
 
-
-
-
-    
 }
 
 
 /* Header styling */
 header {
   grid-area: header;
-  max-height: 60px;
-  min-height: 60px;
-  
 }
 
 header h1 {
-  font-size: 48px;
+  font-size: 4rem;
   color: #f29c1f; /* Orange color for FOXNOTE */
   margin-bottom: 20px;
   font-family: "Caveat Brush", system-ui;
@@ -328,7 +318,10 @@ main {
   font-optical-sizing: auto;
   font-style: normal;
   font-weight: bold;
-  margin-bottom: 300px;
+
+  position: relative;
+  top: 50%;
+
 }
 
 

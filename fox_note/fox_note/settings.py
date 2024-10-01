@@ -220,7 +220,7 @@ EMAIL_HOST_USER = 'python.py2002@gmail.com'
 EMAIL_HOST_PASSWORD = 'obae eubv lqqx lups'  # Use an app-specific password if required
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'python.py2002@gmail.com'
-
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '' #To remove the prefix and set a custom subject
 
 
 #i will fill this place by the custom email message verification that i will send
