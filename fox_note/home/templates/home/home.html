@@ -1,14 +1,133 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+  <link rel="stylesheet" href="{% static "home/css/home.css" %}">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
-  <h1>welcome to home</h1>
-  
-  <button><a href="http://127.0.0.1:8000/auth/accounts/signup">sign up</a></button>
-  <button><a href="http://127.0.0.1:8000/auth/accounts/login">log in</a></button>
+
+  <!-- for the title -->
+  <header>
+    <h1>FOXNOTE</h1>
+  </header>
+
+
+  <!-- for the navbar -->
+  <nav> 
+    <div class="navbar-right-section">
+      <a href="http://127.0.0.1:8000/auth/accounts/signup">sign up</a>
+      <a href="http://127.0.0.1:8000/auth/accounts/login">log in</a>
+    </div>
+  </nav>
+
+
+
+
+  <div class="test" style="height: 1000px;"></div>
+  <img src="{%static 'home/images/holding pencil.png'%}" alt="wlcoming" loading="lazy" >
+  <img src="{%static 'home/images/quote.gif'%}" alt="quote" >
+  <img src="{%static 'home/images/new.gif'%}" alt="new" >
+  <img src="{%static 'home/images/good.gif'%}" alt="good">
+
+  <!-- wlcome section -->
+   <section class="welcome-section hidden-content">
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <h2>Welcome <br> To <br> <span>FOXNOTE</span></h2>
+        </div>
+        <div class="card-back">
+          <span class="quote">Organize your notes effortlessly !</span>
+        </div>
+      </div>
+    </div>
+   </section>
+
+   <!-- definition section -->
+   <section class="defenition-section hidden-content">
+
+    <div class="title">
+      <span class="title1"> 
+        <h2>What is FOXNOTE</h2>
+       <div class="go-corner">
+       </div>
+      </span>
+   </div>
+
+    <blockquote class="callout quote EN">
+      <b>FoxNote</b> is a versatile, user-friendly note-taking platform designed to help individuals stay organized and productive. Whether you're managing personal tasks, FoxNote allows you to capture ideas, create detailed notes, and structure your thoughts effortlessly. With a focus on simplicity and functionality, it adapts to your workflow, making it easier than ever to manage notes across devices while keeping your data secure and accessible.
+   </section>
+
+
+  <!-- features section -->
+   <section class="features-section hidden-content ">
+    <div class="title">
+      <span class="title1"> 
+        <h2>Features</h2>
+       <div class="go-corner">
+       </div>
+      </span>
+   </div>
+
+
+    <div class="first-option hidden-content">
+      <span class="mynote">Simple design</span>
+      <img class="mynote-img" src="{% static 'home/images/mynote.png' %}" alt="simple">
+    </div>
+
+    <div class="second-option hidden-content">
+      <img class="mynote-edit-img" src="{% static 'home/images/mynote edit.png' %}" alt="edite">
+      <span class="mynote-edit">Editable</span>
+    </div>
+
+    <div class="third-option hidden-content">
+      <span class="mynote-ribbon">All you need</span>
+      <img class="mynote-ribbon-img" src="{% static 'home/images/mynote ribbon.png' %}" alt="edite">
+
+    </div>
+
+   </section>
+
+
+
+
+
+  <!-- pricing section -->
+   <section class="price-section">
+
+    <div class="title">
+      <span class="title1"> 
+        <h2>Pricing</h2>
+       <div class="go-corner">
+       </div>
+      </span>
+   </div>
+
+    <div class="animated-text">
+      <span class="word">Get</span>
+      <span class="word">started</span>
+      <span class="word">with</span>
+      <span class="word">your</span>
+      <span class="word">free</span>
+      <span class="word">account</span>
+      <span class="word">today</span>
+      <span class="word">!</span>
+    </div>
+
+    <div class="badge ">100% Free!</div>
+
+        
+   </section>
+
+   <div class="test" style="height: 1000px;"></div>
+
+
+
+   <script src="{% static "home/javascript/home.js" %}"></script>
 </body>
 </html>
