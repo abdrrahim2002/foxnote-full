@@ -17,6 +17,10 @@ body {
   ;
   margin: 0;
   padding: 0;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;  /* Optional: Fade-in effect */
   
 }
 

@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }, {
     root: null,  // Use the viewport as the root
-    rootMargin: '-30% 0px',  // Offset the intersection by 30% from the top
-    threshold: 0  // Trigger as soon as any part of the element is visible
+    rootMargin: '-20% 0px',  // Offset the intersection by 30% from the top
+    threshold: 0.20  // Trigger as soon as any part of the element is visible
   });
 
 
@@ -85,3 +85,57 @@ document.addEventListener("DOMContentLoaded", function () {
   hiddenElements.forEach((el) => observer.observe(el));
 });
 
+
+
+
+//generate the year automatucaly 
+
+// Get the current year
+const year = new Date().getFullYear();
+
+// Set the year in the footer
+document.querySelector('.current-year').textContent = year;
+
+
+
+
+
+//showing the about window
+function show_window (event, target) {
+  //block normal processe of the bottom
+  event.preventDefault();
+
+  //target the ncessary
+  const window = document.querySelector(`.${target}`);
+  const overlay = document.querySelector('.overlay');
+
+  //do the action 
+  window.classList.add('show');
+  overlay.classList.add('show');
+}
+
+
+
+//function to close the window
+function close_window () {
+  //select the elements
+  const overlay = document.querySelector('.overlay');
+  const about = document.querySelector('.about-window');
+  const term = document.querySelector('.term-window');
+  const privacy = document.querySelector('.privacy-window');
+
+  //do the action
+  overlay.classList.remove('show');
+  about.classList.remove('show');
+  term.classList.remove('show');
+  privacy.classList.remove('show');
+}
+
+
+//to load the page correctly without showing the garbeg
+
+window.onload = function() { setTimeout(() => {
+  document.body.style.visibility = "visible";
+  document.body.style.opacity = "1";  // This will trigger the fade-in effect
+}, 5000);
+};

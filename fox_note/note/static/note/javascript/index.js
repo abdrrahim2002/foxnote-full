@@ -655,7 +655,7 @@ function createTag(event) {
         emptyTagForm()
       }
     } else {
-      alert('Error: could not add new tag pleaze see if the tag is duplicated or you miss some field');
+      alert('Error: could not add the new tag, please see if the tag is duplicated or you missed some field');
     }
   };
 

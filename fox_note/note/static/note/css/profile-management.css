@@ -21,6 +21,11 @@ body {
 	grid-template-rows: auto;
 	grid-template-columns: 1fr;
 
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;  /* Optional: Fade-in effect */
+
 }
 
 
@@ -714,7 +719,217 @@ main {
 
 
 
-footer {
+
+/* style the footer */
+/* footer */
+/* Footer General Styling */
+.footer {
+  margin-top: 200px;
   grid-area: footer;
-	background-color: rgba(37,143,1, 0.5);
+  background-color: #f29c1f;
+  color: #fff;
+  padding: 40px 20px;
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+
+  height: fit-content;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-left,
+.footer-middle,
+.footer-right {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px 20px;
+}
+
+/* Footer Left Section */
+.footer-left h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.footer-left p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footer-links li a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Middle Section */
+.footer-middle h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-middle p a {
+  color: #666; /* Orange for email link */
+  text-decoration: none;
+}
+
+.footer-middle p a:hover {
+  text-decoration: underline;
+}
+
+/* Footer Right Section */
+.footer-right h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.social-icon {
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  filter: brightness(0) invert(1); /* Make icon white */
+}
+
+.social-icon:hover {
+  filter: brightness(0.5) invert(1);
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 14px;
+}
+
+
+
+
+
+/* styling the about window */
+.show{
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 199;
+}
+
+.overlay.visible-window {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s ease;
+}
+
+.about-window, .privacy-window, .term-window {
+  width: 75%;
+  justify-self: center;
+  background: white;
+  border-radius: 18px;
+  font-size: 1.5rem;  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  padding-bottom: 68px;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 200;
+  transition: all ease 1s;
+}
+
+
+.about-window button, .privacy-window button, .term-window button {
+  font-size: 2rem;
+  font-weight: bold;
+  background: rgb(255, 94, 94);
+  margin: 0;
+  padding: 4px 14px;
+  border: none;
+  border-radius: 10px;
+  position: absolute;
+  right: 33px;
+  top: 33px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.about-window button:hover, .privacy-window button:hover, .term-window button:hover {
+  background-color: rgb(255, 24, 24);
+}
+
+.about-window button:active, .privacy-window button:active, .term-window button:active {
+  transform: scale(0.9);
+}
+
+
+.about-window h2, .privacy-window h2, .term-window h2 {
+  font-size: 2.5rem;
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  margin-left: 51px;
+}
+
+.about-window span, .privacy-window span, .term-window span {
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: normal;
+  width: 90%;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+
+
+
+.term-window ul {
+  font-family: "Playpen Sans", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: normal;
+  width: 90%;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
 }
