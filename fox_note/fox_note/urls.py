@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import redirect_view
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
@@ -36,3 +38,6 @@ urlpatterns = [
     path('auth/accounts/', include('allauth.socialaccount.urls')),
 
 ]
+
+
+""" handler404 = 'fox_note.views.custom_404' """

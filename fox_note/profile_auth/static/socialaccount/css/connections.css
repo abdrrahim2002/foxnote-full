@@ -59,6 +59,10 @@ header h1 {
   margin: 0;
   margin-left: 35px;
 
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 1s ease;
+
 }
 
 
