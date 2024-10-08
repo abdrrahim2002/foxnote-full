@@ -15,6 +15,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 from django.urls import path, include
 from .views import redirect_view
 
@@ -37,7 +39,7 @@ urlpatterns = [
     path('auth/accounts/', include('allauth.urls')),
     path('auth/accounts/', include('allauth.socialaccount.urls')),
 
-]
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 """ handler404 = 'fox_note.views.custom_404' """
